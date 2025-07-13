@@ -1,0 +1,68 @@
+:root {
+    /*variable declaration*/
+    --ocean-heght: 90vh;
+    --top-bar-height: 9.7vh;
+
+}
+
+html {
+    overflow: hidden;
+}
+
+html, body {
+    margin: 0;
+    background: grey;
+}
+
+#top-bar {
+    height: var(--top-bar-height);
+    background: grey;
+}
+
+#ocean {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0099ff;
+    border-bottom: 0.3vmin solid white;
+    border-top: 0.3vmin solid white;
+    padding: 2.5% 0%;
+
+    #map-container {
+        display: flex;
+        width: 80%;
+        outline: 1px solid white;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        cursor: alias;
+    }
+
+    img {
+        width: 100%;
+    }
+    
+    polygon:hover {
+        fill: white;
+        cursor:pointer;
+    }   
+
+    svg {
+        position: absolute;
+        stroke: rgb(128, 128, 128);
+        stroke-width: 0.3%;
+        fill: grey;
+        fill-opacity: 0.5;
+        z-index: 100;
+    }
+
+
+
+}
+
+#bottom-bar {
+    height: 9.7vh;
+    background: grey;
+}
+
