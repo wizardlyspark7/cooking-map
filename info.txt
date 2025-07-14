@@ -1,0 +1,2 @@
+https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3 -> 3 country letter codes
+https://www.figma.com/community/file/1434180489810036303 -> SVG of all flags

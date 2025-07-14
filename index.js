@@ -2,12 +2,28 @@ const map = document.querySelector("#map-container");
 let mapWidth = map.clientWidth;
 let mapHeight = map.clientHeight;
 let pointsClicked = '<polygon points="';
+const countryObjects = {
+    usa: {domObject: document.querySelector("#usa"), iso3166: "usa", countryName: "United States of America"},
+    nzl: {domObject: document.querySelector("#nzl"), iso3166: "nzl", countryName: "New Zealand"},
+    aus: {domObject: document.querySelector("#aus"), iso3166: "aus", countryName: "Australia"},
+    ind: {domObject: document.querySelector("#ind"), iso3166: "ind", countryName: "India"},
+    ita: {domObject: document.querySelector("#ita"), iso3166: "ita", countryName: "Italy"},
+    tha: {domObject: document.querySelector("#tha"), iso3166: "tha", countryName: "Thailand"},
+    jpn: {domObject: document.querySelector("#jpn"), iso3166: "jpn", countryName: "Japan"},
+    kor: {domObject: document.querySelector("#kor"), iso3166: "kor", countryName: "Korea"}
+}
 
-//<polygon points="17,21.5 15,30 16,36 19.5,36, 21.5,37 30,36 35,21.5"></polygon>
 
 window.addEventListener("resize", updateSize);
 map.addEventListener("click", listMaker);
 window.addEventListener("keypress", dumpList);
+
+Object.keys(countryObjects).forEach(identifier =>
+    {
+        countryObjects[identifier]["domObject"].addEventListener('mouseover', changeFlag);
+        countryObjects[identifier]["domObject"].addEventListener('mouseleave', removeFlag);
+    }
+)
 
 function listMaker(event) {
     let eventX = Math.round((event.offsetX / mapWidth)*1000)/10;
@@ -27,4 +43,13 @@ function updateSize() {
 
 function dumpList() {
     console.log(pointsClicked + '"></polygon>');
+}
+
+function changeFlag(event) {
+    console.log(event);
+}
+
+function removeFlag(event) {
+    console.log(event);
+    console.log(event["fromElement"].id);
 }

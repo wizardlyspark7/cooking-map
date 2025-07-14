@@ -30,16 +30,15 @@ html, body {
     padding: 2.5% 0%;
 
     #map-container {
+        position: relative;
         display: flex;
         width: 80%;
-        outline: 1px solid white;
         position: relative;
         justify-content: center;
         align-items: center;
-        cursor: alias;
     }
 
-    img {
+    #world-map {
         width: 100%;
     }
     
@@ -66,3 +65,27 @@ html, body {
     background: grey;
 }
 
+#country-block {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: 93vmin;
+    height: 7vmin;
+    background: grey;
+    outline: 1px solid white;
+}
+
+#flag {
+    height: 90%;
+}
+
+#country-name {
+    background: brown;
+    height: 90%;
+    width: 20%;
+    flex-grow: 1;
+}
