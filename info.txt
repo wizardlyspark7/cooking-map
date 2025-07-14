@@ -1,2 +1,8 @@
 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3 -> 3 country letter codes
 https://www.figma.com/community/file/1434180489810036303 -> SVG of all flags
+
+git stuff
+1. git status (check git working)
+2. git add . (or file name eg git add index.html index.js index.css, '.' adds all)
+3. git commit -m "[message]" (documentation of update)
+4. git push (sends update)
