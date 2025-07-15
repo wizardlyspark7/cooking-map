@@ -76,7 +76,6 @@ html, body {
     top: 93vmin;
     height: 7vmin;
     background: grey;
-    outline: 1px solid white;
 }
 
 #flag {
@@ -84,8 +83,11 @@ html, body {
 }
 
 #country-name {
-    background: brown;
+    place-content: center;
+    font-size: 6vmin;
+    color: white;
     height: 90%;
     width: 20%;
     flex-grow: 1;
+    margin: 0vmin 1vmin;
 }
