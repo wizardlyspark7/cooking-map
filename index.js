@@ -31,7 +31,7 @@ const recipes = {
     "usa": {
         cookiePie: {
             id: "cookie-pie",
-            name: "Cookie Pie",
+            name: "Cast Iron Cookie Pie",
             author: "Zach Irain",
             source: "tastesbetterfromscratch.com",
             url: "cookie-pie", /* Thumbnail can be accessed by using tn standard */
