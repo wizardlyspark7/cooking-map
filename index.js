@@ -8,6 +8,10 @@ const countryName = document.querySelector("#country-name");
 const pagesContainer = document.querySelector("#pages-container");
 const returnButton = document.querySelector("#return-button");
 const resultsContainer = document.querySelector("#results-container");
+let countrySelectedID = "";
+let unitSwitch = document.querySelector("#unitswitch");
+let currentUnit = "metric";
+let unitIndex = 1;
 
 
 // I dont know enough JS to import. In any event, the number of characters for all my websites is tiny. It's images that will slow it down.
@@ -113,6 +117,7 @@ window.addEventListener("resize", updateSize);
 map.addEventListener("click", listMaker);
 window.addEventListener("keydown", windowKeyDownFunctions);
 returnButton.addEventListener("click", back);
+unitSwitch.addEventListener("click", toggleUnits)
 
 
 Object.keys(countryObjects).forEach(identifier =>
@@ -122,6 +127,23 @@ Object.keys(countryObjects).forEach(identifier =>
         countryObjects[identifier]["domObject"].addEventListener('click', countrySelected);
     }
 )
+
+function toggleUnits(event) {
+    console.log("Toggling list");
+    // Imperial units are an index of 0, metric an index of 1. The instructions are an index of 2.
+    if(currentUnit === "metric") {
+        currentUnit = "imperial";
+        unitIndex = 0;
+        unitSwitch.innerText = ("Switch to Metric");
+
+
+    } else if (currentUnit === "imperial") {
+        currentUnit = "metric";
+        unitSwitch.innerText = ("Switch to Imperial");
+        unitIndex = 1;
+    }
+
+}
 
 function listMaker(event) {
     let eventX = Math.round((event.offsetX / mapWidth)*1000)/10;
@@ -176,14 +198,15 @@ function removeFlag(event) {
 
 function page(direction) {
     console.log("Trying to move page");
-    console.log(pagesContainer);
     (direction === "up") ? pageIndex+= -100: pageIndex += 100;
     pagesContainer.style.top = (`${pageIndex}%`);
 }
 
 function countrySelected(event) {
+    countrySelectedID = event['srcElement'].id;
+    console.log(countrySelectedID)
     deleteTiles(); // Clear out old tiles
-    displayNewTiles(event['srcElement'].id) // Get new tiles based on country clicked
+    displayNewTiles(countrySelectedID) // Get new tiles based on country clicked
     console.log("Trying to move page");
     console.log(pagesContainer);
     pageIndex += -100; // Updates page index variable
@@ -216,6 +239,7 @@ function displayNewTiles(id) {
 }
 
 function createTile(recipe) {
+
     // Give up if there is indication of missing data
     if (recipe.name === undefined || recipe.id === undefined) {
         console.log("Abandon ship! Missing data!");
@@ -226,8 +250,9 @@ function createTile(recipe) {
     // Create new tile outline
     const newTile = document.createElement("div");
     newTile.classList.add("recipe-card");
-    newTile.id = (recipe.id);
     resultsContainer.appendChild(newTile); // Place within container
+    newTile.id = (recipe.id);
+    newTile.addEventListener("click", recipeSelected);
 
     // Create new img
     const newImg = document.createElement("img");
@@ -247,4 +272,74 @@ function createTile(recipe) {
     newName.textContent = (`${recipe.name}`);
     newName.classList.add("recipe-text-container");
     newTile.appendChild(newName); // Place within container
+    console.log(newTile.id);
+}
+
+function recipeSelected(event) {
+    const recipeID = event.currentTarget.id;
+    page("up");
+    populateRecipe(recipeID);
+}
+
+function populateRecipe(recipeID) {
+    const recipeName = getRecipeName(recipeID) // The object name cannot contain -'s but the ID does, so I must search through recipe[country] and look at each ID to find one that matches. 
+    const recipeDetails = recipes[countrySelectedID][recipeName]; //Get recipe info
+
+    recipeTitle = document.querySelector("#recipe-title");
+    recipeImage = document.querySelector("#recipe-image");
+    recipeAbout = document.querySelector("#recipe-about");
+    recipeIngredients = document.querySelector("#recipe-ingredients");
+    recipeInstructions = document.querySelector("#recipe-instructions");
+    recipeNotes = document.querySelector("#recipe-notes");
+
+    recipeTitle.innerText = (recipeDetails.name);
+    recipeImage.innerText = (recipeDetails.url);
+    recipeAbout.innerText = (recipeDetails.preamble);
+    recipeDetails.ingredients.forEach(ingredient => {
+        addIngredient(ingredient, recipeIngredients);
+    })
+    recipeDetails.instructions.forEach(instruction => {
+        addInstruction(instruction, recipeInstructions);
+    })
+    recipeNotes.innerText = (recipeDetails.notes);
+    
+}
+
+function getRecipeName(recipeID) {
+        let valueToReturn = undefined;
+        Object.keys(recipes[countrySelectedID]).forEach(recipeName => {
+        if (recipes[countrySelectedID][recipeName].id == recipeID) {
+            console.log(recipeName);
+            valueToReturn = recipeName;
+        }
+    })
+    return valueToReturn;
+}
+
+function addIngredient(ingredient, parent) {
+
+    console.log(`Adding: ${ingredient[0]}, ${ingredient[1]}, ${ingredient[2]}`);
+    const ingredientUnit = ingredient[unitIndex];
+    const ingredientText = ingredient[2];
+    const newIngredient = document.createElement("li");
+    newIngredient.classList.add("ingredient-item");
+    
+
+    if(ingredient.length === 1) {
+        console.log("Non-unitary measurement.")
+        newIngredient.innerText=(`${ingredient[0]}`);
+    } else {
+        newIngredient.innerText=(`${ingredientUnit} ${ingredientText}`);        
+    }
+
+    parent.appendChild(newIngredient);
+}
+
+function addInstruction(instruction, parent) {
+
+    console.log(`Adding: ${instruction}`);
+    const newInstruction = document.createElement("li");
+    newInstruction.classList.add("instruction-item");
+    newInstruction.innerText=(instruction);
+    parent.appendChild(newInstruction);
 }

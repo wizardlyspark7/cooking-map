@@ -167,3 +167,13 @@ html, body {
     height: 75px;
     place-items: center;
 }
+
+#recipe-page {
+    min-width: 100%;
+    min-height: 100%;
+    background: yellow;    
+}
+
+#unitswitch {
+    cursor: pointer;
+}
