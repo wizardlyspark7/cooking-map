@@ -169,11 +169,18 @@ html, body {
 }
 
 #recipe-page {
-    min-width: 100%;
-    min-height: 100%;
+    width: 60%;
+    min-height: 100vh;
     background: yellow;    
+    margin: auto;
 }
 
 #unitswitch {
     cursor: pointer;
+}
+
+#recipe-picture {
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
 }

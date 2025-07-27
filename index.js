@@ -6,7 +6,7 @@ let pageIndex = 0;
 const flagImage = document.querySelector("#flag");
 const countryName = document.querySelector("#country-name");
 const pagesContainer = document.querySelector("#pages-container");
-const returnButton = document.querySelector("#return-button");
+const returnButtons = document.querySelectorAll("#return-button");
 const resultsContainer = document.querySelector("#results-container");
 let countrySelectedID = "";
 let unitSwitch = document.querySelector("#unitswitch");
@@ -37,6 +37,7 @@ const recipes = {
             id: "cookie-pie",
             name: "Cast Iron Cookie Pie",
             author: "Zach Irain",
+            altText: "Picture of a Cast Iron Cookie Pie.",
             source: "tastesbetterfromscratch.com",
             url: "cookie-pie", /* Thumbnail can be accessed by using tn standard */
             time: [],
@@ -116,7 +117,9 @@ const countryObjects = {
 window.addEventListener("resize", updateSize);
 map.addEventListener("click", listMaker);
 window.addEventListener("keydown", windowKeyDownFunctions);
-returnButton.addEventListener("click", back);
+returnButtons.forEach(button =>{
+    button.addEventListener("click", back);}
+)
 unitSwitch.addEventListener("click", toggleUnits)
 
 
@@ -214,9 +217,14 @@ function countrySelected(event) {
 }
 
 function back(event) {
-    console.log("Trying to move page");
-    pageIndex += 100;
-    pagesContainer.style.top = (`${pageIndex}%`);
+    if(pageIndex < 0) {
+        console.log("Trying to move page");
+        pageIndex += 100;
+        pagesContainer.style.top = (`${pageIndex}%`);
+    } else {
+        console.log("No - already on page 1.");
+    }
+    console.log(pageIndex);
 }
 
 function deleteTiles() {
@@ -285,20 +293,23 @@ function populateRecipe(recipeID) {
     const recipeName = getRecipeName(recipeID) // The object name cannot contain -'s but the ID does, so I must search through recipe[country] and look at each ID to find one that matches. 
     const recipeDetails = recipes[countrySelectedID][recipeName]; //Get recipe info
 
+    // Get divs
     recipeTitle = document.querySelector("#recipe-title");
-    recipeImage = document.querySelector("#recipe-image");
+    recipePicture = document.querySelector("#recipe-picture");
     recipeAbout = document.querySelector("#recipe-about");
     recipeIngredients = document.querySelector("#recipe-ingredients");
     recipeInstructions = document.querySelector("#recipe-instructions");
     recipeNotes = document.querySelector("#recipe-notes");
 
+    // Populate basic info
+    recipePicture.src = (`./resources/${countrySelectedID}/${recipeDetails.url}.png`);
+    recipePicture.alt = `${recipeDetails.altText}`;
     recipeTitle.innerText = (recipeDetails.name);
-    recipeImage.innerText = (recipeDetails.url);
     recipeAbout.innerText = (recipeDetails.preamble);
-    recipeDetails.ingredients.forEach(ingredient => {
+    recipeDetails.ingredients.forEach(ingredient => { // Ingredients/Instructions are a bit more complicated.
         addIngredient(ingredient, recipeIngredients);
     })
-    recipeDetails.instructions.forEach(instruction => {
+    recipeDetails.instructions.forEach(instruction => { // Ingredients/Instructions are a bit more complicated.
         addInstruction(instruction, recipeInstructions);
     })
     recipeNotes.innerText = (recipeDetails.notes);
