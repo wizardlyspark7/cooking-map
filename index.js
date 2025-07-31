@@ -8,10 +8,14 @@ const countryName = document.querySelector("#country-name");
 const pagesContainer = document.querySelector("#pages-container");
 const returnButtons = document.querySelectorAll("#return-button");
 const resultsContainer = document.querySelector("#results-container");
+const countryListButton = document.querySelector("#country-list-toggle-button");
+const countryListDiv = document.querySelector("#country-list");
+const countryItemsContainer = document.querySelector("#country-list-items-container");
 let countrySelectedID = "";
 let unitSwitch = document.querySelector("#unitswitch");
 let currentUnit = "metric";
 let unitIndex = 1;
+let countryListStatus = "closed";
 
 
 // I dont know enough JS to import. In any event, the number of characters for all my websites is tiny. It's images that will slow it down.
@@ -114,6 +118,9 @@ const countryObjects = {
     kor: {domObject: document.querySelector("#kor"), iso3166: "kor", countryName: "South Korea"}
 }
 
+
+
+// Initial actions taken upon load.
 window.addEventListener("resize", updateSize);
 map.addEventListener("click", listMaker);
 window.addEventListener("keydown", windowKeyDownFunctions);
@@ -121,7 +128,16 @@ returnButtons.forEach(button =>{
     button.addEventListener("click", back);}
 )
 unitSwitch.addEventListener("click", toggleUnits)
+countryListButton.addEventListener("click", toggleCountryList);
 
+
+Object.keys(countryObjects).forEach(country => {
+    createListItem(country);
+});
+
+document.querySelectorAll(".country-list-tile-item").forEach(item => {
+    item.addEventListener("click", countrySelected);
+})
 
 Object.keys(countryObjects).forEach(identifier =>
     {
@@ -130,6 +146,58 @@ Object.keys(countryObjects).forEach(identifier =>
         countryObjects[identifier]["domObject"].addEventListener('click', countrySelected);
     }
 )
+
+function createListItem(country) {
+
+    // Create tile
+
+    console.log("making a tile");
+    const newTile = document.createElement("div");
+    newTile.classList.add("country-list-tile-item");
+    countryItemsContainer.appendChild(newTile); // Place within container
+    newTile.id = (country); // This is elegant if I can make it work.
+    newTile.addEventListener("click", countrySelected);
+
+    // Create text div
+
+    const newText = document.createElement("div");
+    newText.classList.add("country-list-tile-text");
+    newText.innerText = countryObjects[country].countryName;
+    newText.id = (country);
+    newTile.appendChild(newText);
+
+    // Create image div
+
+    const newImage = document.createElement ("img");
+    newImage.src = (`./resources/${country}-flag.svg`);
+    newImage.id = (country);
+    newTile.appendChild(newImage);
+
+}
+
+
+
+function toggleCountryList(event) {
+    if(countryListStatus === "closed") {
+        openCountryList();
+    } else if (countryListStatus === "open") {
+        closeCountryList();
+    } else {
+        console.log("Uh-oh!");
+    }
+}
+
+function closeCountryList() {
+    countryListStatus = "closed";
+    countryListButton.style.transform = ("rotate(90deg)");
+    countryListDiv.style.left = ("-90%");
+}
+
+function openCountryList() {
+    countryListStatus = "open";
+    countryListButton.style.transform = ("rotate(-90deg)");
+    countryListDiv.style.left = ("0%");
+}
 
 function toggleUnits(event) {
     console.log("Toggling list");
@@ -205,7 +273,8 @@ function page(direction) {
     pagesContainer.style.top = (`${pageIndex}%`);
 }
 
-function countrySelected(event) {
+function countrySelected(event) { // Needs update to handle inputs from the country list
+    console.log(event);
     countrySelectedID = event['srcElement'].id;
     console.log(countrySelectedID)
     deleteTiles(); // Clear out old tiles
