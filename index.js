@@ -38,11 +38,11 @@ per-step ingredients
 const recipes = {
     "usa": {
         cookiePie: {
+            type: "internal",
             id: "cookie-pie",
             name: "Cast Iron Cookie Pie",
             author: "Zach Irain",
             altText: "Picture of a Cast Iron Cookie Pie.",
-            source: "tastesbetterfromscratch.com",
             url: "cookie-pie", /* Thumbnail can be accessed by using tn standard */
             time: [],
             preamble: "This is my recipe, adjusted from Lauren Allen's from tastesbetterfromscratch.com. This is one of Abby's favourites. I incorporated some of Kenji Alt Lopez steps to making a better cookie.",
@@ -76,8 +76,12 @@ const recipes = {
                 "If you're unable to wait until the next day to bake the cookies, I recommend at least waiting an hour or two. This will allow the flour to autolyse, which will create a better tasting cookie. Kenji Alt Lopez has some very detailed writing on cookie science for further reading."
             ]      
         },
-        chickenBrine: {
-            Name: "Chicken Brine"
+        utahScone: {
+            type: "external",
+            id: "utah-scone",
+            name: "Utah Scone",
+            url: "utah-scone",     
+            websiteLink: "https://www.chelseasmessyapron.com/utah-scones/#wprm-recipe-container-115251"
         }
 
 
@@ -317,6 +321,8 @@ function displayNewTiles(id) {
 
 function createTile(recipe) {
 
+    let tileType = (recipe.type === "external" ? "external" : "internal"); // External and internal links will be handled quite differently
+
     // Give up if there is indication of missing data
     if (recipe.name === undefined || recipe.id === undefined) {
         console.log("Abandon ship! Missing data!");
@@ -327,6 +333,7 @@ function createTile(recipe) {
     // Create new tile outline
     const newTile = document.createElement("div");
     newTile.classList.add("recipe-card");
+    tileType === "external" ? newTile.classList.add("external") : newTile.classList.add("internal");
     resultsContainer.appendChild(newTile); // Place within container
     newTile.id = (recipe.id);
     newTile.addEventListener("click", recipeSelected);
@@ -343,6 +350,7 @@ function createTile(recipe) {
         newImg.src = (`./resources/${recipe.url}_tn.png`);
     }
     newTile.appendChild(newImg); // Place within container
+    newImg.id = ("thumbnail");
 
     // Create new text div
     const newName = document.createElement("div");

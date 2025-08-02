@@ -6,8 +6,9 @@
 }
 
 html {
-    /*overflow: hidden;*/
-}
+    overflow: hidden;
+    scrollbar-width: none;
+}   
 
 html, body {
     margin: 0;
@@ -197,7 +198,7 @@ html, body {
 #results-page{ 
     min-width: 100vw;
     min-height: 100vh;
-    background: bisque;
+        background: #0099ff;
 }
 
 #page-2-top-bar {
@@ -223,8 +224,14 @@ html, body {
     grid-auto-rows: 225px;
     row-gap: 2.5%;
     column-gap: 2%;
-    outline: 1px solid white;
+    background: rgb(166, 166, 166);
     justify-content: start;
+
+    #thumbnail {
+        height: 150px;
+        width: 250px;
+        object-fit: fill;
+    }
 
 }
 
