@@ -6,3 +6,78 @@ git stuff
 2. git add . (or file name eg git add index.html index.js index.css, '.' adds all)
 3. git commit -m "[message]" (documentation of update)
 4. git push (sends update)
+
+
+How to align recipes:
+
+OPTION 1:
+Fundamental origin
+    - Each recipe is attributed to its national origin
+    - How do I handle fusion cuisines? Most have original roots.
+    - Is garlic bread fundamentally American or Italian? I don't know.
+    - From a user perspective, I think you expect to see "Sweet and Sour chicken" in Chinese, but garlic bread in American.
+    - It seems reductive to say "Here's my italian food:" then show Americanised versions.
+    - Also, I'm not saying "ITALIAN CUISINE", I'm saying "Here are dishes from italy on a map"
+
+OPTION 2:
+Creator origin
+    - Each recipe is attributed to the country of the person who last altered it.
+    - Many recipes which I have fundamentally altered will be NZ/USA (Depending when I came up with it). 
+    - O.G. alfredo: italian. american alfredo: american
+
+
+
+FORMATTING NOTES:
+DO: || DONT:
+ || anything else
+tablespoon || Tablespoon
+"12 tablespoons", "butter" || "12 tablespoons ", " butter" (I WILL ADD SPACES AT IMPLEMENTATION)
+imperial, metric, description || any other layout
+100g || 100 g 
+1/2 || 0.5
+"baking soda" || "baking soda." (Stylically I prefer w/o periods in ingredients)
+["blah blah blah", "blah blah blah"] || ["1. blah blah blah", "2. blah blah blah"] (NO numbers)
+
+TO IMPLEMENT LATER:
+per-step ingredients
+
+
+INTERNAL
+
+: {
+            type: "internal",
+            id: "",
+            name: "",
+            author: "",
+            altText: "",
+            url: "" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                [],
+                [],
+                [],
+                
+            ],
+            instructions: [
+                "",
+                "",
+                "",
+            ],
+            notes: [
+                "",
+                "",
+                ""
+            ]      
+        },
+
+EXTERNAL
+
+        : {
+            type: "external",
+            id: "",
+            name: "",
+            url: "",     
+            websiteLink: ""
+        },

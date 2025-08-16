@@ -11,11 +11,14 @@ const resultsContainer = document.querySelector("#results-container");
 const countryListButton = document.querySelector("#country-list-toggle-button");
 const countryListDiv = document.querySelector("#country-list");
 const countryItemsContainer = document.querySelector("#country-list-items-container");
+const resultsCountryHeader = document.querySelector("#results-country-header");
+let recipeID = undefined;
 let countrySelectedID = "";
 let unitSwitch = document.querySelector("#unitswitch");
 let currentUnit = "metric";
 let unitIndex = 1;
 let countryListStatus = "closed";
+
 
 
 // I dont know enough JS to import. In any event, the number of characters for all my websites is tiny. It's images that will slow it down.
@@ -37,6 +40,7 @@ per-step ingredients
 */
 const recipes = {
     "usa": {
+        blurb: "Were I a food purist, 90% of the recipes on this site would be tagged as 'American'",
         cookiePie: {
             type: "internal",
             id: "cookie-pie",
@@ -48,15 +52,15 @@ const recipes = {
             preamble: "This is my recipe, adjusted from Lauren Allen's from tastesbetterfromscratch.com. This is one of Abby's favourites. I incorporated some of Kenji Alt Lopez steps to making a better cookie.",
             specialEquipment: ["Cast Iron Skillet"],
             ingredients: [
-                ["12 tablespoons", "170g", "butter - melted"],
+                ["12tbsp", "170g", "butter - melted"],
                 ["1 cup", "200g", "light brown sugar"],
                 ["1/2 cup", "100g", "white sugar"],
-                ["1 large egg"],
-                ["1 egg yolk"],
-                ["1 tablespoon", "15ml", "vanilla extract"],
-                ["2 cups + 2 ", "265g", "all-purpose flour"],
-                ["1/2 teaspoon", "2.5g", "baking soda"],
-                ["1/2 teaspoon", "2.5g", "salt"],
+                ["1", "large egg"],
+                ["1", "egg yolk"],
+                ["1tbsp", "15ml", "vanilla extract"],
+                ["2 cups + 2tbsp", "265g", "all-purpose flour"],
+                ["1/2tsp", "2.5g", "baking soda"],
+                ["1/2tsp", "2.5g", "salt"],
                 ["1 1/2 cups", "270g", "chocolate chips or other chopped chocolate"]
             ],
             instructions: [
@@ -71,28 +75,255 @@ const recipes = {
                 "Allow to cool for as long as you can, or 25 minutes, before slicing and serving."
             ],
             notes: [
-                "The chocolate inside the cookie tends to melt into the dough, making a chocolatey mixture. You could probably prevent this with a chocolate with a higher melting point, or sprinkling more of your chocolate on top of the dough.",
+                "The chocolate inside the cookie tends to melt into the dough, making a chocolatey mixture. You could probably prevent this with a chocolate with a higher melting point, or reserving some chocolate to place on top of the dough shortly before cooking.",
                 "You could probably use anything you wanted to cook these, eg stainless steel or a springform tin. However, the steep sides of most cast irons plus their thermal mass are well suited to making a cookie pie.",
                 "If you're unable to wait until the next day to bake the cookies, I recommend at least waiting an hour or two. This will allow the flour to autolyse, which will create a better tasting cookie. Kenji Alt Lopez has some very detailed writing on cookie science for further reading."
             ]      
         },
-        utahScone: {
+        utahScones: {
             type: "external",
-            id: "utah-scone",
-            name: "Utah Scone",
-            url: "utah-scone",     
+            id: "utah-scones",
+            name: "Utah Scones",
+            url: "utah-scones",     
             websiteLink: "https://www.chelseasmessyapron.com/utah-scones/#wprm-recipe-container-115251"
-        }
-
-
+        },
+        eggsBenedict: {
+            type: "internal",
+            id: "eggs-benedict",
+            name: "Eggs Benedict",
+            author: "Zachary Irain",
+            altText: "Picture of Eggs Benedict",
+            url: "eggs-benedict", /* Thumbnail can be accessed by using tn standard */
+            time: [],
+            servingSize: "Two people (Makes 4x eggs benedicts)",
+            preamble: "A really delicious but simple meal. The two most important things are making a hollandaise you love, and poaching the eggs well, in that order.",
+            specialEquipment: ["Tool for poaching eggs"],
+            ingredients: [
+                ["Hollandaise Sauce"],
+                ["2", "egg yolks"],
+                ["1/4 cup", "60ml", "cream"],
+                ["1/2tsp", "2.5g", "mustard powder"],
+                ["1tbsp", "15ml", "lemon juice"],
+                ["4tbsp", "60g", "butter"],
+                ["Eggs Benedict"],
+                ["4", "eggs"],
+                ["2", "english muffins, halved"],
+                ["6", "rashers of bacon, or desired substitute"],
+                ["1 bunch", "dried or fresh parsley, for a pretty garnish."],               
+            ],
+            instructions: [
+                "Note: This dish is hard to time correctly. See note for more info.",
+                "Heat a medium saucepan of water until bubbles form on the bottom. Use the time while you make the Hollandaise to find the right setting to maintain this temperature.",
+                "Melt butter in a small saucepan at a low heat.",
+                "Mix in the two egg yolks and remaining ingredients. Take great care to add as little heat as possible, as any simmering will destroy the emulsion",
+                "Once all ingredients are integrated, taste the sauce to make sure you're satisfied with it. If you are, remove it from the heat. Periodically add it back to a low temperature element to keep it warm, and make sure it's warm before topping the eggs benedict.",
+                "Fry the bacon in the pan. Once the bacon is about 6 minutes from your desired level of doneness, crack the 4 eggs into the water. I can't offer any tips for poaching eggs because I just use a tool - I respect anyone who chooses to do it the hard way!",
+                "When there's about 4 minutes until the bacon's completion, begin toasting the 4 english muffins.",
+                "Once everything is completed (Hopefully on time), plate everything up. English muffin, then bacon, then one egg per muffin and spoon hollandaise on top. Garnish with parsley if desired.",
+            ],
+            notes: [
+                "The hard part of this recipe is the timing. The bacon and egg are both best served immediately, and the hollandaise is so small in volume that even a small burner on low heat can break the sauce. There are some methods to alleviate this - oven cooked bacon can be timed accurately with experience, and you can finish the holldaise first and quickly reheat when the other ingredients are ready. Ultimately, I think this recipe is hard to get perfect on the first try.",
+                "You can substitute bacon for ham, salmon, whatever you're into.",
+            ]      
+        },
+        garlicBread: {
+            type: "internal",
+            id: "garlic-bread",
+            name: "Garlic Bread",
+            author: "Zachary Irain",
+            altText: "Image of garlic bread.",
+            url: "garlic-bread", /* Thumbnail can be accessed by using tn standard */ 
+            time: [],
+            preamble: "This is my attempt to recreate the glory of the garlic bread from Dominos in New Zealand. I don't think I've succeeded yet, but it's still better than what I've found in Utah. I'll never understand why American Pizza more often sells bread sticks.",
+            specialEquipment: ["Tin foil"],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["1", "loaf of french bread."],
+                ["8tbsp", "113g", "butter"],
+                ["1tbsp", "15g", "olive oil"],
+                ["5", "cloves of garlic"],
+                ["a large pinch", "of parmesan cheese"],
+                ["1/2tsp", "2.5g", "salt"],
+                ["1/2tsp", "2.5g", "parsley"],
+                ["1/2tsp", "2.5g", "oregano"],
+                ["1/2tsp", "2.5g", "garlic powder"],
+                ["1/2tsp", "2.5g", "paprika"],
+            ],
+            instructions: [
+                "Preheat the oven to 350f/180c",
+                "Slice the bread into slices, approximately 1inch (2.5cm) wide. Make sure not to cut to the bottom of the bread, you want the loaf to be connected at the bottom.",
+                "Microwave the butter in a microwave safe container for approximately 13 seconds. You want the butter to be soft enough to stir and mix, but not liquidy. It helps if you cut the butter into several pieces before microwaving.",
+                "Add the remaining ingredients, and stir.",
+                "Use a silicone brush or a spoon to apply the mixture to the inner surfaces of the bread. Make sure the mixture is well mixed beforehand, as the garlic strongly tends to settle at the bottom.",
+                "Once every slice of bread has the mixture spread, wrap the bread in tinfoil. I typically do this by setting the bread on a roll of tinfoil and wrapping around, then twisting the ends.",
+                "Place in the oven for about 12-13 minutes. "
+            ],
+            notes: [
+                "I've never tried this, but I suspect that if you heated the garlic and olive oil in a saucepan you would cook out some of the harsh notes of the garlic.",
+                "In my experience, garlic and garlic powder are both valuable additions to garlic bread, so I recommend both if possible.",
+            ]      
+        },
+        alfredo: {
+            type: "internal",
+            id: "alfredo",
+            name: "Alfredo (American style)",
+            author: "Zachary Irain",
+            altText: "Picture of Alfredo",
+            url: "alfredo" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "This is a ridiculously indulgent dish. While it doesn't have the sharply cheesey taste of the original Alfredo, it's nonetheless a delightful 'comfort' meal, and one of the first I dishes I learned in America.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["1lb", "453g", "fettuccine pasta"]
+                ["6tbsp", "85g", "butter"],
+                ["5", "cloves garlic - crushed"],
+                ["2tbsp", "30ml", "flour"],
+                ["1 1/2 cups", "355ml", "milk"],
+                ["1 1/2 cups", "355ml", "cream"],
+                ["3 cups", "710ml", "cheddar cheese or other as preferred"],
+                ["Several grinds", "Pepper"],
+                ["1tbsp", "15ml", "salt"],
+                ["1tsp", "5ml", "garlic powder"],
+                ["1tsp", "5ml", "onion powder"],
+                ["1tsp", "5ml", "paprika powder"],
+                ["1btsp", "15ml", "cheese powder (optional)"],
+                ["1tsp", "5ml", "parsley (optional, garnish)"],
+            ],
+            instructions: [
+                "Melt the butter in a frying pan over low/medium heat. At this point you could bring a salted pot of water large enough for the noodles to a near-boil.",
+                "Once melted, increase temperature to a medium heat. Once the butter is bubbling, add the crushed garlic and sautee for about 1 minute",
+                "Turn the temperature back down to low/medium and add the flour. Stir until combined then let cook for a further minute",
+                "Turn the temperature all the day down to low, then begin integrating the cream. Cheese powder is quite resistance to mixing, so if you intend to use it then add it now. It's much easier to integrate liquids into mixtures at lower concetrations, so take your time and integrate small amounts at a time. At about this point you could bring the pasta water to a boil and add the pasta, then cook per the instructions.",
+                "Once the cream is fully integrated, repeat the process with the milk.",
+                "Once the milk is integrated, you can begin increasing the heat, while stirring frequently. You can begin increasing the temperature in the prior steps, but this is the less-risky method",
+                "Shortly, the mixture will thicken then begin to bubble. At this point, take the sauce off the heat. Now you can stir in all of your seasonings and begin stirring cheese into the sauce, a handful at a time. You may need to heat the frying pan up again to get the cheese to melt, but absolutely avoid letting it bubble as this will quickly break the emulsion.",
+                "Once all the seasonings are integrated and the cheese has melted through, mix in your pasta. Garnish with parsley if desired and serve."
+            ],
+            notes: [
+                "Cheesy/buttery sauces struggle with being reheated. Expect the sauce to split if reheated in the microwave and butter to pool at the bottom of the bowl. Additionally, this dish cools into a quite solid brick of sauce and noodle. Overall, I don't recommend the leftovers of this dish nearly as much as when fresh.",
+                "I typically will serve this with chicken, but almost anything will work with this.",
+                "The seasonings mentioned are honestly guesses. I don't measure and I taste often."
+            ]      
+        },
     },
     nzl: {
+        stickyLickenChicken: {
+            type: "internal",
+            id: "sticky-licken-chicken",
+            name: "Sticky Licken' Chicken",
+            author: "Glen Irain",
+            altText: "Image of Sticky Licken Chicken",
+            url: "sticky-licken-chicken" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "One of my favourite of dad's recipes that I've never managed to capture. This is my best understanding of his recipe, that I hope to update some day to yield better results.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["6", "Boneless skinless chicken thighs"],
+                ["3tbsp", "45ml", "Fivespice"],
+                ["12oz", "350g", "Sweet Chili Sauce"],
+                ["A pinch", "of salt"],
+                ["1tbsp", "15ml", "Sesame seeds"]
+                
+            ],
+            instructions: [
+                "Preheat oven to 210c (410f). Prepare chicken by salting it and coating in plenty of fivespice. It's difficult to estimate how much - less than if you rolled it in Fivespice, but still quite a lot.",
+                "Once the oven is at temperature, place the chicken on a removable wire rack. This should be on top of an oven tray, to avoid making a mess. Drizzle tops of chicken thights generously with sweet chili sauce, then place in the oven.",
+                "Every 10 minutes, remove the tray from the oven and scoop up any sweet chili sauce that has fallen off, and add more chili sauce until the thighs are covered again.",
+                "You'll repeat this step 3-4 times, until the thighs are cooked and the sweet chili sauce has reduced on top of the thighs. Consider using the broiler to speed up this effect if it takes too long.",
+                "Once the chicken thighs are coated in a dark and sticky sauce, remove and slice into strips. To serve, sprinkle generously with sesame seeds."
+            ],
+            notes: [
+                "If you're willing to waste another dish, consider toasting the sesame seeds.",
+                "This reecipe doesn't brown as much as I'd like. Perhaps it should use the broiler the entire time? I don't know.",
+                "My dad would typically serve this on a bed of risotto, so that is how I recommend serving this dish."
+            ]      
+        },
+        raspberryIcedBuns: {
+            type: "internal",
+            id: "iced-buns",
+            name: "Raspberry Iced Buns",
+            author: "Zachary Irain",
+            altText: "An image of raspberry iced buns",
+            url: "" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "This is loosely adapted from Erin Clarkson's recipe from cloudykitchen.com. Mostly, I made my own frosting with actual raspberries that I think adds a burst of flavour and acid. The most interesting part of this recipe is the Tangzhong, it's something I would love to understand and adapt into more recipes. These are incredible buns though - for the first day or two they're as soft as fresh doughnuts, and that is all due to the base recipe.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["Tangzhong"],
+                ["0.9oz", "25g", "Bread flour"],
+                ["4.25oz", "120g", "Whole milk"],
+                ["Buns"],
+                ["7oz", "200g", "Cold milk"],
+                ["0.7oz", "20g", "Granulated sugar"],
+                ["2tsp", "7g", "Instant yeast"],
+                ["1 1/2tsp", "7.5g", "Salt"],
+                ["2", "Eggs, ideally at room temperature"],
+                ["12.7oz", "360g", "Bread flour"],
+                ["3tbsp", "45g", "Butter, at room temperature"],
+                ["Some", "water"],
+                ["Icing"],
+                ["9.2oz", "260g", "Powdered sugar"],
+                ["1 1/3tbsp", "20g", "Butter, at room temperature"],
+                ["1/4tsp", "1.5g", "Vanilla extract"],
+                ["0.7oz", "20g", "Boiling water"],
+                ["1 cup", "???g", "Fresh raspberries"],
+                ["2tbsp", "30g", "Granulated sugar"],
+                ["1tbsp", "15g", "Lemon juice"],
+                ["A pinch", "of salt"],
+
+
+            ],
+            instructions: [
+                "",
+                "",
+                "",
+            ],
+            notes: [
+                "I would like to come back to this and convert the oz measurements into cups where applicable. Unfortunately grams are a weight measurement, and cups are a volume measurement, so I cannot do the conversion easily.",
+                "The original recipe makes some specifications - room temperature eggs, the addition of milk powder, that I have broadly ignored and still found these delicious. I don't doubt they are good changes though.",
+                "I never use unsalted butter. I don't think the difference is typically noticeable, in any case."
+            ]      
+        },
 
     },
     aus: {
 
     },
     ind: {
+        blurb: "Indian food is criminally underrepresented in America. The downside to this is I don't get cheap, tasty Indian takeaways. The upside is I get the privilege of making it for other people and giving them a new, hopefully enjoyable, experience.",
+        Naan: {
+            type: "external",
+            id: "naan",
+            name: "Naan bread",
+            url: "naan",     
+            websiteLink: "https://www.recipetineats.com/naan-recipe/#wprm-recipe-container-58510"
+        },
+        butterChicken: {
+            type: "internal",
+            id: "butter-chicken",
+            name: "Butter Chicken",
+            author: "Zachary Irain",
+            altText: "Picture of Butter Chicken.",
+            url: "butter-chicken" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "Truly the iconic dish. Maybe some day I'll get mine to restaurant standards, but for now this will have to do.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                [],
+                [],
+                [],
+                
+            ],
+            instructions: [
+                "",
+                "",
+                "",
+            ],
+            notes: [
+                "",
+                "",
+                ""
+            ]      
+        },
 
     },
     ita: {
@@ -106,20 +337,67 @@ const recipes = {
     },
     kor: {
 
+    },
+
+    hun: {
+        paprikaChicken: {
+            type: "internal",
+            id: "paprika-chicken",
+            name: "Paprika Chicken",
+            author: "Zach Irain",
+            altText: "A picture of Paprika Chicken",
+            url: "paprika-chicken" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "Pan-fried chicken pieces in a moreish smokey paprika sauce. Best served with oven-roasted potatoes to suck up the extra sauce as this recipe makes plenty of sauce.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["2", "chicken breasts"],
+                ["1 cup", "236ml", "heavy cream"],
+                ["3/4 cup", "177ml", "chicken stock"],
+                ["2", "cloves garlic - crushed"],
+                ["2tbsp", "30ml", "smokey paprika"],
+                ["A pinch", "of cayenne pepper"],
+                ["Some", "salt - to taste"],
+                ["Some", "pepper - to taste"],
+                ["Some", "seasoning for the chicken - your choice"],
+                ["A few tablespoons", "A few dozen millilitres", "cooking oil - for frying."]
+
+                
+            ],
+            instructions: [
+                "Slice the chicken breasts into flat pieces. This is best done by slicing the chicken perpendicular to your countertop. Each breast can be sliced once or using this method. Aim for even thicknesses.",
+                "Season the chicken with seasonings of your choosing - just make sure some salt is included.",
+                "Fill a shallow bowl or large plate with flour, then season the flour until it looks good to you. Salt, pepper, garlic powder, and onion powder are good choices here.",
+                "Heat the cooking oil in a frying pan over a medium-high heat until hot. Then pan fry the chicken, flipping when the heat-down side is cooked, until both sides are well-seared.",
+                "Remove the chicken from the heat, then reduce the heat to medium-low. Add the crushed garlic and stir until fragrant, about 1 minute. You'll notice the flour from the chicken will form a roux, which will help thicken the sauce.",
+                "Add the chicken stock and stir until incorporated. Stirring occasionally, increase the heat until simmering.",
+                "Add the cream. Stir until incorporated.",
+                "At the smokey paprika, cayenne pepper, several grinds of salt and pepper, and any other seasonings you would like. A pinch of MSG will enhance the umami-nes of this dish. Stir until everything is combined.",
+                "Re-add the chicken then continue simmering until the chicken is cooked through. Be careful to avoid simmering too aggressively, as this may break the sauce. "
+            ],
+            notes: [
+                "The reason I don't specify seasoning for the chicken here is that I don't think it matters much. Seasoning chicken in a dish that will be coated and pan fried gives the impression of flavour, without necessarily contributing flavour on its own. Salt and pepper is surely sufficient - but I will typically grab a seasoning mix I like and use that.",
+                "This recipe is perfect for oven-roasted potatoes. You'll find my recipe here:",
+                "I use a stock concentrate, but with a higher ratio of stock to water than recommended. More flavour is more better.",
+                "For an even more succulent dish, substitute the cooking oil with butter."
+            ]      
+        },
     }
 };
 
 
 
 const countryObjects = {
-    usa: {domObject: document.querySelector("#usa"), iso3166: "usa", countryName: "United States of America"},
-    nzl: {domObject: document.querySelector("#nzl"), iso3166: "nzl", countryName: "New Zealand"},
-    aus: {domObject: document.querySelector("#aus"), iso3166: "aus", countryName: "Australia"},
-    ind: {domObject: document.querySelector("#ind"), iso3166: "ind", countryName: "India"},
-    ita: {domObject: document.querySelector("#ita"), iso3166: "ita", countryName: "Italy"},
-    tha: {domObject: document.querySelector("#tha"), iso3166: "tha", countryName: "Thailand"},
-    jpn: {domObject: document.querySelector("#jpn"), iso3166: "jpn", countryName: "Japan"},
-    kor: {domObject: document.querySelector("#kor"), iso3166: "kor", countryName: "South Korea"}
+    usa: {domObject: document.querySelector("#usa"), iso3166: "usa", countryName: "United States of America", adjective: "American"}, 
+    nzl: {domObject: document.querySelector("#nzl"), iso3166: "nzl", countryName: "New Zealand", adjective: "Kiwi"},
+    aus: {domObject: document.querySelector("#aus"), iso3166: "aus", countryName: "Australia", adjective: "Australian"},
+    ind: {domObject: document.querySelector("#ind"), iso3166: "ind", countryName: "India", adjective: "Indian"},
+    ita: {domObject: document.querySelector("#ita"), iso3166: "ita", countryName: "Italy", adjective: "Italian"},
+    tha: {domObject: document.querySelector("#tha"), iso3166: "tha", countryName: "Thailand", adjective: "Thai"},
+    jpn: {domObject: document.querySelector("#jpn"), iso3166: "jpn", countryName: "Japan", adjective: "Thai"},
+    kor: {domObject: document.querySelector("#kor"), iso3166: "kor", countryName: "South Korea", adjective: "South Korean"},
+    hun: {domObject: document.querySelector("#hun"), iso3166: "hun", countryName: "Hungary", adjective: "Hungarian"},
+    gbr: {domObject: document.querySelector("#gbr"), iso3166: "gbr", countryName: "United Kingdom", adjective: "British"},
 }
 
 
@@ -204,7 +482,7 @@ function openCountryList() {
 }
 
 function toggleUnits(event) {
-    console.log("Toggling list");
+
     // Imperial units are an index of 0, metric an index of 1. The instructions are an index of 2.
     if(currentUnit === "metric") {
         currentUnit = "imperial";
@@ -217,6 +495,21 @@ function toggleUnits(event) {
         unitSwitch.innerText = ("Switch to Imperial");
         unitIndex = 1;
     }
+
+    let newIngredients = recipes[countrySelectedID][getRecipeName(recipeID)].ingredients;
+    console.log(newIngredients)
+    let counter = 0;
+    let allUnits = document.querySelectorAll(".ingredient-unit");
+    allUnits.forEach(unit => {
+        if(newIngredients[counter].length === 2) {
+            unit.innerHTML = newIngredients[counter][0];
+        } else {
+            unit.innerHTML = newIngredients[counter][unitIndex];
+        }
+        
+        counter++
+    })
+    console.log(allUnits);
 
 }
 
@@ -246,7 +539,19 @@ function windowKeyDownFunctions(event) {
     } else if (event.key === "s") {
         console.log("Moving down!");
         page("down");
+        deleteRecipeDelay();
     }
+
+}
+
+function deleteRecipeDelay() { // TODO: Have this function delay then re-enable the clicking of buttons.
+    console.log("Deleting recipe");
+    recipeItems = document.querySelectorAll(".delete-on-page-up");
+    setTimeout(function(){ // Wait 1s to execute
+        recipeItems.forEach(item => {
+        item.remove();
+    })
+    }, 1000)
 
 }
 
@@ -273,7 +578,12 @@ function removeFlag(event) {
 
 function page(direction) {
     console.log("Trying to move page");
-    (direction === "up") ? pageIndex+= -100: pageIndex += 100;
+    if (direction === "up") {
+        pageIndex += -100;
+        deleteRecipeDelay();
+    } else {
+        pageIndex += 100;
+    }
     pagesContainer.style.top = (`${pageIndex}%`);
 }
 
@@ -287,6 +597,8 @@ function countrySelected(event) { // Needs update to handle inputs from the coun
     console.log(pagesContainer);
     pageIndex += -100; // Updates page index variable
     pagesContainer.style.top = (`${pageIndex}%`); // Moves entire page up 100%, which effectively movies viewport down 100%
+    console.log(resultsCountryHeader);
+    resultsCountryHeader.innerText = (`${countryObjects[countrySelectedID].adjective} Food`)
 }
 
 function back(event) {
@@ -298,6 +610,7 @@ function back(event) {
         console.log("No - already on page 1.");
     }
     console.log(pageIndex);
+    deleteRecipeDelay();
 }
 
 function deleteTiles() {
@@ -312,6 +625,9 @@ function deleteTiles() {
 
 function displayNewTiles(id) {
     let  allTiles = recipes[id];
+    if (allTiles === undefined) {
+        console.log("Error: No recipes for this country.");
+    }
     allTiles = Object.keys(allTiles);
     allTiles.forEach(recipe => {
         createTile(recipes[id][`${recipe}`]);
@@ -349,21 +665,38 @@ function createTile(recipe) {
     } else {
         newImg.src = (`./resources/${recipe.url}_tn.png`);
     }
-    newTile.appendChild(newImg); // Place within container
     newImg.id = ("thumbnail");
+    newTile.appendChild(newImg); // Place within container
 
     // Create new text div
     const newName = document.createElement("div");
     newName.textContent = (`${recipe.name}`);
     newName.classList.add("recipe-text-container");
     newTile.appendChild(newName); // Place within container
-    console.log(newTile.id);
+
+
+    // Create external symbol for external tiles
+    if(tileType === "external") {
+        const newExternalIcon = document.createElement("img");
+        newExternalIcon.classList.add("external-icon");
+        newExternalIcon.src = ("./resources/external-link.png");
+        newTile.appendChild(newExternalIcon);
+    }
 }
 
 function recipeSelected(event) {
-    const recipeID = event.currentTarget.id;
-    page("up");
-    populateRecipe(recipeID);
+    recipeID = event.currentTarget.id;
+    const recipeName = getRecipeName(recipeID);
+    console.log("Recipe selected. ID: " + recipeID);
+    if((event.currentTarget.classList).contains("internal")) {
+        console.log("This is an internal tile.");
+        page("up");
+        populateRecipe(recipeID);
+    } else if(event.currentTarget.classList.contains("external")){
+        console.log("This is an external tile.");
+        window.open(recipes[countrySelectedID][recipeName].websiteLink, '_blank');
+    }
+
 }
 
 function populateRecipe(recipeID) {
@@ -379,19 +712,23 @@ function populateRecipe(recipeID) {
     recipeNotes = document.querySelector("#recipe-notes");
 
     // Populate basic info
-    recipePicture.src = (`./resources/${countrySelectedID}/${recipeDetails.url}.png`);
+    recipePicture.src = (`./resources/${countrySelectedID}-pics/${recipeDetails.url}.png`);
     recipePicture.alt = `${recipeDetails.altText}`;
     recipeTitle.innerText = (recipeDetails.name);
     recipeAbout.innerText = (recipeDetails.preamble);
+    console.log(recipeDetails.ingredients);
     recipeDetails.ingredients.forEach(ingredient => { // Ingredients/Instructions are a bit more complicated.
         addIngredient(ingredient, recipeIngredients);
     })
     recipeDetails.instructions.forEach(instruction => { // Ingredients/Instructions are a bit more complicated.
         addInstruction(instruction, recipeInstructions);
     })
-    recipeNotes.innerText = (recipeDetails.notes);
+    recipeDetails.notes.forEach(note =>{
+        addNote(note, recipeNotes)
+    });
     
 }
+
 
 function getRecipeName(recipeID) {
         let valueToReturn = undefined;
@@ -405,19 +742,41 @@ function getRecipeName(recipeID) {
 }
 
 function addIngredient(ingredient, parent) {
-
+    // If the ingredient string has ONE component, it is a subtitle. 
+    // TWO components, then the ingredient is measurement system agnostic
+    // THREE components, then the ingredient is IMPERIAL, METRIC, NAME
+    console.log(ingredient);
     console.log(`Adding: ${ingredient[0]}, ${ingredient[1]}, ${ingredient[2]}`);
-    const ingredientUnit = ingredient[unitIndex];
-    const ingredientText = ingredient[2];
-    const newIngredient = document.createElement("li");
-    newIngredient.classList.add("ingredient-item");
+    const ingredientLength = ingredient.length;
+    let ingredientUnit = undefined;
+    if (ingredientLength === 2) {
+        ingredientUnit = ingredient[0];
+        ingredientText = ingredient[1];
+    } else if (ingredientLength === 3) {
+        ingredientUnit = ingredient[unitIndex];
+        ingredientText = ingredient[2];
+    }
     
+    let newIngredient = undefined;
+    if (ingredientLength > 1) {
+        newIngredient = document.createElement("li");
+        newIngredient.classList.add("ingredient-item");
+    } else if (ingredientLength === 1) {
+        newIngredient = document.createElement("strong");
+        newIngredient.classList.add("recipe-sub-header");
+        newIngredient.classList.add("ingredient-subtitle");
+    } else {
+        console.log("This is weird. The length is less than 1.");
+    }
+    newIngredient.classList.add("delete-on-page-up");
+
+
 
     if(ingredient.length === 1) {
-        console.log("Non-unitary measurement.")
+        console.log("Item is a title.")
         newIngredient.innerText=(`${ingredient[0]}`);
     } else {
-        newIngredient.innerText=(`${ingredientUnit} ${ingredientText}`);        
+        newIngredient.innerHTML = (`<strong class="ingredient-unit">${ingredientUnit}</strong> ${ingredientText}`);        
     }
 
     parent.appendChild(newIngredient);
@@ -428,6 +787,14 @@ function addInstruction(instruction, parent) {
     console.log(`Adding: ${instruction}`);
     const newInstruction = document.createElement("li");
     newInstruction.classList.add("instruction-item");
+    newInstruction.classList.add("delete-on-page-up");
     newInstruction.innerText=(instruction);
     parent.appendChild(newInstruction);
+}
+
+function addNote(note, parent) {
+    newNote = document.createElement("li");
+    newNote.innerText = (note);
+    newNote.classList.add("delete-on-page-up");
+    parent.appendChild(newNote);
 }
