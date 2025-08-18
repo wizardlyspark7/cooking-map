@@ -4,6 +4,7 @@ let mapHeight = map.clientHeight;
 let pointsClicked = '<polygon points="';
 let pageIndex = 0;
 const flagImage = document.querySelector("#flag");
+const countryBlock = document.querySelector("#country-block");
 const countryName = document.querySelector("#country-name");
 const pagesContainer = document.querySelector("#pages-container");
 const returnButtons = document.querySelectorAll("#return-button");
@@ -338,7 +339,12 @@ const recipes = {
     kor: {
 
     },
+    gbr: {
 
+    },
+    fra: {
+        
+    },
     hun: {
         paprikaChicken: {
             type: "internal",
@@ -391,10 +397,11 @@ const countryObjects = {
     usa: {domObject: document.querySelector("#usa"), iso3166: "usa", countryName: "United States of America", adjective: "American"}, 
     nzl: {domObject: document.querySelector("#nzl"), iso3166: "nzl", countryName: "New Zealand", adjective: "Kiwi"},
     aus: {domObject: document.querySelector("#aus"), iso3166: "aus", countryName: "Australia", adjective: "Australian"},
+    fra: {domObject: document.querySelector("#fra"), iso3166: "fra", countryName: "France", adjective: "French"},
     ind: {domObject: document.querySelector("#ind"), iso3166: "ind", countryName: "India", adjective: "Indian"},
     ita: {domObject: document.querySelector("#ita"), iso3166: "ita", countryName: "Italy", adjective: "Italian"},
     tha: {domObject: document.querySelector("#tha"), iso3166: "tha", countryName: "Thailand", adjective: "Thai"},
-    jpn: {domObject: document.querySelector("#jpn"), iso3166: "jpn", countryName: "Japan", adjective: "Thai"},
+    jpn: {domObject: document.querySelector("#jpn"), iso3166: "jpn", countryName: "Japan", adjective: "Japanese"},
     kor: {domObject: document.querySelector("#kor"), iso3166: "kor", countryName: "South Korea", adjective: "South Korean"},
     hun: {domObject: document.querySelector("#hun"), iso3166: "hun", countryName: "Hungary", adjective: "Hungarian"},
     gbr: {domObject: document.querySelector("#gbr"), iso3166: "gbr", countryName: "United Kingdom", adjective: "British"},
@@ -423,11 +430,20 @@ document.querySelectorAll(".country-list-tile-item").forEach(item => {
 
 Object.keys(countryObjects).forEach(identifier =>
     {
+        console.log(countryObjects[identifier].domObject);
+    }
+)
+
+Object.keys(countryObjects).forEach(identifier =>
+    {
+        console.log(identifier);
         countryObjects[identifier]["domObject"].addEventListener('mouseover', changeFlag);
         countryObjects[identifier]["domObject"].addEventListener('mouseleave', removeFlag);
         countryObjects[identifier]["domObject"].addEventListener('click', countrySelected);
     }
 )
+
+
 
 function createListItem(country) {
 
@@ -557,6 +573,7 @@ function deleteRecipeDelay() { // TODO: Have this function delay then re-enable 
 
 function changeFlag(event) {
     let countryID = event['srcElement'].id;
+    console.log(countryID);
     event.preventDefault();
     flagImage.onerror = (error) => {
         flagImage.src=("./resources/missing-flag.svg");
@@ -566,14 +583,14 @@ function changeFlag(event) {
     flagImage.src=(`./resources/${countryID}-flag.svg`);   
     countryName.textContent=(`${countryObjects[countryID]["countryName"]}`);
     countryName.style.margin=("0vmin 1vmin");
+    countryBlock.style.zIndex = "100";
 }
 
 function removeFlag(event) {
-    //console.log(event);
     flagImage.src=("./resources/missing-flag.svg");
-    //flagImage.src=("");
     countryName.textContent=("");    
     countryName.style.margin=("0vmin 0vmin");
+    countryBlock.style.zIndex = "-1";
 }
 
 function page(direction) {
@@ -628,7 +645,11 @@ function displayNewTiles(id) {
     if (allTiles === undefined) {
         console.log("Error: No recipes for this country.");
     }
-    allTiles = Object.keys(allTiles);
+    try {
+        allTiles = Object.keys(allTiles);
+    } catch {
+        console.warn("You probably need to add a key with this country to the recipe dictionary.");
+    } 
     allTiles.forEach(recipe => {
         createTile(recipes[id][`${recipe}`]);
     }
