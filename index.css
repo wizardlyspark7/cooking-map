@@ -8,11 +8,12 @@
 html {
     scrollbar-width: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
 }   
 
 html, body {
     margin: 0;
-    background: grey;
+    background: #0099ff;
 }
 
 #country-list {
@@ -21,16 +22,19 @@ html, body {
     transition: left 1s cubic-bezier(0.5, 0, 0.5, 1);
     width: 90vw;
     height: 75vh;
+    border-radius: 0vmin 5vmin 5vmin 0vmin;
     top: 12%;
     z-index: 20;
     left: -90%;
+    outline: 1px solid black;
 
 }
 
 #relative-wrapper {
     position: relative;
-    max-width: 100%;
-    max-height: 100%;
+    border-radius: 0vmin 5vmin 5vmin 0vmin;
+    width: 100%;
+    height: 100%;
 }
 
 #country-list-toggle-frame {
@@ -38,12 +42,15 @@ html, body {
     display: grid;
     place-items: center;
     width: 7vmin;
-    height: 15vmin;
+    height: 7vmin;
     left: 100%;
     top: 50%;
     transform: translateY(-50%);
     background: grey;
-    border-radius: 0 20% 20% 0
+    border-radius: 0 100% 100% 0;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #country-list-toggle-button {
@@ -53,40 +60,45 @@ html, body {
 }
 
 #country-list-items-container {
-    width: 90%;
-    height: 95%;
+    border-radius: 0vmin 5vmin 5vmin 0vmin;
+    width: 100%;
+    height: 100%; /* I don't know why 97.5% isn't correct here. */
+    scrollbar-width: none;
+    margin-top: auto;
+    margin-bottom: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(750px, 2fr));
-    grid-auto-rows: 225px;
+    grid-auto-rows: 175px;
     column-gap: 5%;
     row-gap: 1%;
     justify-content: center;
     overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .country-list-tile-item {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: space-between;
     background: white;
     overflow: hidden;
     cursor: pointer;
     container-type: inline-size;
     border-radius: 1vmin;
+    margin-left: 1vmin;
+    margin-right: 1vmin;
 
     img {
         margin: auto;
-        height: 90%;
-        outline: 0.1vmin solid black;
+        height: 100%;
+        outline: 1px solid black;
     }    
 }
 
 .country-list-tile-text {
-    font-size: 6.5cqw;
+    flex-grow: 1;
+    display: grid;
+    place-content: center;
     text-align: center;
-    margin: auto;
+    font-size: 6.5cqw;
 }
 
 #ocean {
@@ -226,7 +238,6 @@ html, body {
 #results-page{ 
     width: 100vw;
     height: 100vh;
-        background: #0099ff;
 }
 
 #page-2-top-bar {

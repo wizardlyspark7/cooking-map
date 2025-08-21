@@ -337,6 +337,58 @@ const recipes = {
 
     },
     kor: {
+        BraisedPotatoes: {
+            type: "internal",
+            id: "braised-potatoes",
+            name: "Braised Potatoes",
+            author: "Zachary Irain",
+            altText: "An image of Korean braised potatoes.",
+            url: "braised-potatoes" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "This is adapted from a recipe by Sunny Lee on seriouseats.com. I've tweaked this recipe over time, mostly to try and bring it closer to Abby's recollection of how this dish tasted at her favourite restaurant, Sam Hawk, which sadly closed during Covid. I altered this recipe in a few ways. First, I dramatically increased the recipe size - I love cooking, but I want to minimise how often I'm washing dishes. Second, I tweaked the balance of soy sauce, water, and sugar until I found a mix that perfectly suited my palatte. I replaced some of the soy sauce with low-sodium soy sauce, to preserve the umami flavour without an overload on salt. Lastly, I add honey when I remember to because that brings the sweetness up to what Abby is familiar with.",
+            specialEquipment: ["High-rimmed frying pan with lid. Large pot acceptable substitute."],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["7tbsp", "105ml", "soy sauce"],
+                ["2tbsp", "30ml", "low-sodium soy sauce"],
+                ["9tbsp", "135ml", "water"],
+                ["6tbsp", "90g", "brown sugar"],
+                ["a dash of", "fish sauce"],
+                ["1tbsp", "15ml", "honey (Optional)"],
+                ["3", "cloves garlic - crushed"],
+                ["2lb", "900g", "potatoes - weigh once prepared."],
+                ["3tbsp", "45ml", "sesame oil"],
+                ["1tbsp", "15ml", "sesame seeds"],
+                ["2tbsp", "30ml", "cooking oil, eg vegetable"]
+                
+            ],
+            instructions: [
+                "Mix the soy sauces, water, brown sugar, honey and fish sauce into a measuring cup and stir - this is your braising liquid. To save time, you can do this while the potatoes fry in the oil.",
+                "Clean the potatoes, then optionally peel. See notes for information and recommendations on what potaotoes and whether to peel.",
+                "Chop your optionally peeled potatoes into same sized cubes. Target cubes of approximately 1in/2.5cm per side, but typically it's easier to cut potatoes into thirds, then half or quarter those pieces.",
+                "Heat the cooking oil in a frying pan with high walls on a medium-high heat - enough to stop your braising liquid from spilling over.",
+                "Once you can feel the heat radiating from the pan with a hand held over it, carefully add your potatoes to avoid splashing oil.",
+                "If your potatoes don't fit in one layer on the frying pan, you will need a bigger pan or to remove some potatoes. It's okay to remove some - this recipe makes quite a lot.",
+                "Cook the potatoes in the oil for about 12-12 minutes. Don't stir for the first 4 minutes, then check the potatoes. If they are browning on the bottom them flip them over. Try to get as many sides of as many potato chunks browned as possible - but you won't get them all.",
+                "The goal isn't to cook through the potatoes at this stage, just to brown the surfaces to enhance flavour. Once they are suitably browned (Remember: You won't get them all), turn heat to low and attempt to drain any remaining oil.",
+                "Move all the potatoes to one side and add the crushed garlic to the other side. If there isn't enough oil for it to cook in, add a small amount. Stir the garlic.",
+                "Once garlic is fragrant, add the braising liquid. Stir to make sure potatoes are relatively evenly sitting in the braising liquid, then cover the frying pan.",
+                "Maintain the dish at a simmer for 10 minutes - adjust heat as necessary. The covered pan will make sure the potatoes cook evenly, and the braise does not lose much volume.",
+                "After 10 minutes, insert a knife into a potato piece to test doneness. If it feels cooked through, remove the lid and turn the heat to medium-high.",
+                "Keep stirring during this step, as the braising liquid will rapidly reduce. Be careful with how you stir as the potatoes are quite fragile at this stage.",
+                "Reduce the mixture until you are satisfied with the reduction. You can reduce until no liquid is attached to the bottom of the pan (And is instead all covering potatoes), and I prefer to do this for additional flavour, but you may leave some liquid left as a thick sauce. Be careful not to overdo it as a medium high heat will very quickly split the liquid if it reduces too much.",
+                "Once you have reduced the liquid to your liking, remove from heat immediately. Pour the sesame oil on top of the potatoes and stir. Sprinkle sesame seeds on top.",
+                "Traditionally this dish is eaten cold, but I prefer it hot. I often serve this with chicken bulgogi and rice - but I think it would be a suitable accompaniment for many korean or east-asian dishes."
+            ],
+            notes: [
+                "The ideal and best tasting form of this dish uses peeled potatoes, since sides with the skin on will not brown. However, potatoes' nutrients are overwhelmingly in the skin, so you may judge keeping the skins to be worth the trade offs (Plus, it's much easier). For this reason I recommend making sure you have 900g of peeled or unpeeled potatoes, as 900g of pre-peeled potatoes will, once peeled, cook down with more braising liquid than is necessary",
+                "In terms of the type of potato, waxy potatoes are best if not peeling, as their skins tend to be thinner and less noticeable. Brown potatoes fry better so are preferably if peeling. Ultimately - 9 times out of 10 I do what's cheap.",
+                "I haven't tried this - but you could probably add the potatoes to cold oil and prevent any splash risk.",
+                "If you are adverse to using oil, you could boil the potatoes for ~7-10 minutes instead. The sauce carries most of the flavour, so I think they would still taste okay.",
+                "Toasted sesame seeds are of course tastier than non-toasted, but it's an additional step that I will typically skip.",
+                "Honey will make this dish sweeter, which is more familiar to Abby's Sam Hawk memory - hence why it's optional as I don't necessarily prefer it.",
+                "If you don't have low-sodium soy sauce, I recommend substituting the 2tbsp low-sodium with 1tbsp regular soy sauce. Any more and I find the dish has a very salt aftertaste, which is not worth it for the additional umaminess."
+            ]      
+        },
 
     },
     gbr: {
@@ -443,6 +495,13 @@ Object.keys(countryObjects).forEach(identifier =>
     }
 )
 
+if (map.clientWidth < 1500) {
+    if(countryListStatus === "closed") {
+        toggleCountryList();
+    }
+    window.alert("Your browser width is below the recommended level for the map view. I recommend using the list and not map view.");
+}
+
 
 
 function createListItem(country) {
@@ -543,6 +602,9 @@ function updateSize() {
     console.log("RESIZE!!!");
     mapWidth = map.clientWidth;
     mapHeight = map.clientHeight;
+    if(map.clientWidth < 1500) {
+        console.log("too small");
+    }
 }
 
 function windowKeyDownFunctions(event) {
