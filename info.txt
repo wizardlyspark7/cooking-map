@@ -46,6 +46,7 @@ INTERNAL
 
 : {
             type: "internal",
+            course: "",
             id: "",
             name: "",
             author: "",

@@ -14,6 +14,7 @@ html {
 html, body {
     margin: 0;
     background: #0099ff;
+    overflow: hidden;
 }
 
 #country-list {
@@ -253,80 +254,109 @@ html, body {
     cursor: pointer;
 }
 
-#results-content {
+#results-page {
     box-sizing: border-box;
-    background: rgb(52, 199, 192);
+    background: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     gap: 1.5vmin;
     align-items: center;
-    height: 100vmin;
+    height: 95vh;
+    margin-top: 2.5vh;
+    margin-bottom: 5vh;
+    border-radius: 2%;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 5px 5px 10px black;
 
     h1 {
         font-size: 40px;
     }
 }
 
-#results-container {
-    display: grid;
-    margin: 0 auto;
-    padding: 5% 0;
+#menu-container {
     width: 100%;
-    flex-grow: 1;
-    grid-template-columns: repeat(auto-fit, 250px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.menu-section-container {
+    width: 100%;
+    flex-grow: 0;
     grid-auto-rows: 225px;
     row-gap: 2.5%;
     column-gap: 2%;
-    background: rgb(166, 166, 166);
+    background: rgb(255,255,255);
     justify-content: space-around;
-
-    .recipe-card {
-        position: relative;
-        border-radius: 2.5%;
-        outline: 1px solid black;
-        overflow: hidden;
-        text-align: center;
-        vertical-align: text-bottom;
-        font-size: 25px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-
-        #thumbnail {
-        height: 150px;
-        width: 250px;
-        object-fit: fill;
-        }   
-            
-        .external-icon {
-            position: absolute;
-            transform: translateX(-100%);
-            left: calc(100% - 10px);
-            top: 10px;
-            height: 30px;
-            width: 30px;
-            z-index: 20;
-        }
-    }
-
-    .internal {
-        background: rgb(38, 186, 28);
-    }
-
-    .external {
-        background: rgb(212, 206, 53);
-    }
-
 
 }
 
 
+.menu-subheader {
+    width: 100%;
+    height: 50px;
+    background: rgb(165, 165, 165);
+    display: grid;
+    place-content: center;
+    font-weight: bold;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.menu-subcontent {
+    width: 100%;
+    background: rgb(212, 212, 212);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    column-gap: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: start;
+}
+
+
+.recipe-card {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: text-bottom;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+
+    #thumbnail {
+    height: 150px;
+    width: 250px;
+    outline: 1px solid black;
+    object-fit: fill;
+    }   
+        
+    .external-icon {
+        position: absolute;
+        transform: translateX(-100%);
+        left: calc(100% - 10px);
+        top: 10px;
+        height: 30px;
+        width: 30px;
+        z-index: 20;
+    }
+
+    .internal {
+        /*background: rgb(38, 186, 28);*/
+    }
+
+    .external {
+        /*background: rgb(212, 206, 53);*/
+    }
+}
+
 
 .recipe-card:hover {
-    box-shadow: 10px 5px 5px black;
+    /*box-shadow: 10px 5px 5px black; Pending redesign */
 }
 
 .recipe-text-container {
@@ -338,12 +368,17 @@ html, body {
 
 #recipe-page {
     width: 60%;
-    min-height: 100vh;
+    overflow: hidden;
     background: rgb(166, 166, 166);
     margin: auto;
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
+    max-height: 95vh;
+    min-height: 95vh;
+    margin-top: 5vh;
+    margin-bottom: 2.5vh;
+    border-radius: 2% 2% 0 2%;
+    box-shadow: 5px 5px 10px black;
 }
 
 #recipe-content {

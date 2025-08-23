@@ -8,7 +8,12 @@ const countryBlock = document.querySelector("#country-block");
 const countryName = document.querySelector("#country-name");
 const pagesContainer = document.querySelector("#pages-container");
 const returnButtons = document.querySelectorAll("#return-button");
-const resultsContainer = document.querySelector("#results-container");
+const resultsContainer = {
+                            entree: document.querySelector("#entree"),
+                            main: document.querySelector("#main"),
+                            baked: document.querySelector("#baked"),
+                            other: document.querySelector("#other"),
+                        };
 const countryListButton = document.querySelector("#country-list-toggle-button");
 const countryListDiv = document.querySelector("#country-list");
 const countryItemsContainer = document.querySelector("#country-list-items-container");
@@ -44,6 +49,7 @@ const recipes = {
         blurb: "Were I a food purist, 90% of the recipes on this site would be tagged as 'American'",
         cookiePie: {
             type: "internal",
+            course: "baked",
             id: "cookie-pie",
             name: "Cast Iron Cookie Pie",
             author: "Zach Irain",
@@ -83,6 +89,7 @@ const recipes = {
         },
         utahScones: {
             type: "external",
+            course: "baked",
             id: "utah-scones",
             name: "Utah Scones",
             url: "utah-scones",     
@@ -90,6 +97,7 @@ const recipes = {
         },
         eggsBenedict: {
             type: "internal",
+            course: "main",
             id: "eggs-benedict",
             name: "Eggs Benedict",
             author: "Zachary Irain",
@@ -129,6 +137,7 @@ const recipes = {
         },
         garlicBread: {
             type: "internal",
+            course: "entree",
             id: "garlic-bread",
             name: "Garlic Bread",
             author: "Zachary Irain",
@@ -165,6 +174,7 @@ const recipes = {
         },
         alfredo: {
             type: "internal",
+            course: "main",
             id: "alfredo",
             name: "Alfredo (American style)",
             author: "Zachary Irain",
@@ -209,6 +219,7 @@ const recipes = {
     nzl: {
         stickyLickenChicken: {
             type: "internal",
+            course: "main",
             id: "sticky-licken-chicken",
             name: "Sticky Licken' Chicken",
             author: "Glen Irain",
@@ -240,6 +251,7 @@ const recipes = {
         },
         raspberryIcedBuns: {
             type: "internal",
+            course: "baked",
             id: "iced-buns",
             name: "Raspberry Iced Buns",
             author: "Zachary Irain",
@@ -293,6 +305,7 @@ const recipes = {
         blurb: "Indian food is criminally underrepresented in America. The downside to this is I don't get cheap, tasty Indian takeaways. The upside is I get the privilege of making it for other people and giving them a new, hopefully enjoyable, experience.",
         Naan: {
             type: "external",
+            course: "entree",
             id: "naan",
             name: "Naan bread",
             url: "naan",     
@@ -300,6 +313,7 @@ const recipes = {
         },
         butterChicken: {
             type: "internal",
+            course: "main",
             id: "butter-chicken",
             name: "Butter Chicken",
             author: "Zachary Irain",
@@ -339,6 +353,7 @@ const recipes = {
     kor: {
         BraisedPotatoes: {
             type: "internal",
+            course: "entree",
             id: "braised-potatoes",
             name: "Braised Potatoes",
             author: "Zachary Irain",
@@ -400,6 +415,7 @@ const recipes = {
     hun: {
         paprikaChicken: {
             type: "internal",
+            course: "main",
             id: "paprika-chicken",
             name: "Paprika Chicken",
             author: "Zach Irain",
@@ -733,29 +749,41 @@ function createTile(recipe) {
     const newTile = document.createElement("div");
     newTile.classList.add("recipe-card");
     tileType === "external" ? newTile.classList.add("external") : newTile.classList.add("internal");
-    resultsContainer.appendChild(newTile); // Place within container
+    console.log(recipe.course);
+    console.log(resultsContainer[recipe.course]);
+    resultsContainer[recipe.course].appendChild(newTile); // Place within container
     newTile.id = (recipe.id);
     newTile.addEventListener("click", recipeSelected);
-
-    // Create new img
-    const newImg = document.createElement("img");
-    console.log(recipe);
-    console.log(recipe.url);
-    let fileURL = recipe.url;
-    if(fileURL === undefined) {
-        console.log("Failed to find image")
-        newImg.src = ("./resources/missing-image_tn.png");
-    } else {
-        newImg.src = (`./resources/${recipe.url}_tn.png`);
-    }
-    newImg.id = ("thumbnail");
-    newTile.appendChild(newImg); // Place within container
 
     // Create new text div
     const newName = document.createElement("div");
     newName.textContent = (`${recipe.name}`);
     newName.classList.add("recipe-text-container");
     newTile.appendChild(newName); // Place within container
+
+    // Create new img
+    const newImg = document.createElement("img");
+    let fileURL = recipe.url;
+        if(fileURL === undefined) {
+        console.log("Failed to find image")
+        newImg.src = ("./resources/missing-image_tn.png");
+    } else {
+        newImg.src = (`./resources/${recipe.url}_tn.png`);
+    }
+    try {
+        new URL(`./resources/${recipe.url}_tn.png`);
+    } catch (error) {
+        newImg.src = ("./resources/missing-image_tn.png");
+    }
+    newImg.id = ("thumbnail");
+    try {
+        newTile.appendChild(newImg); // Place within container
+    } catch(error) {
+        console.log(error);
+    }
+    
+
+
 
 
     // Create external symbol for external tiles
@@ -795,7 +823,13 @@ function populateRecipe(recipeID) {
     recipeNotes = document.querySelector("#recipe-notes");
 
     // Populate basic info
-    recipePicture.src = (`./resources/${countrySelectedID}-pics/${recipeDetails.url}.png`);
+    try {
+        new URL(`./resources/${countrySelectedID}-pics/${recipeDetails.url}.png`);
+        recipePicture.src = (`./resources/${countrySelectedID}-pics/${recipeDetails.url}.png`);
+    } catch (err) {
+        console.log("No such image exists");
+        recipePicture.src = (`./resources/missing-image.png`);
+    }
     recipePicture.alt = `${recipeDetails.altText}`;
     recipeTitle.innerText = (recipeDetails.name);
     recipeAbout.innerText = (recipeDetails.preamble);
