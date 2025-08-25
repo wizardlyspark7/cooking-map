@@ -14,13 +14,21 @@ const resultsContainer = {
                             baked: document.querySelector("#baked"),
                             other: document.querySelector("#other"),
                         };
+const headersContainer = {
+                            entree: document.querySelector("#entree-header"),
+                            main: document.querySelector("#main-header"),
+                            baked: document.querySelector("#baked-header"),
+                            other: document.querySelector("#other-header"),
+                        };
 const countryListButton = document.querySelector("#country-list-toggle-button");
 const countryListDiv = document.querySelector("#country-list");
 const countryItemsContainer = document.querySelector("#country-list-items-container");
 const resultsCountryHeader = document.querySelector("#results-country-header");
+const imperialButton = document.querySelector("#unitswitch-imperial");
+const metricButton = document.querySelector("#unitswitch-metric");
+const unitswitchColor = document.querySelector("#unitswitch-color");
 let recipeID = undefined;
 let countrySelectedID = "";
-let unitSwitch = document.querySelector("#unitswitch");
 let currentUnit = "metric";
 let unitIndex = 1;
 let countryListStatus = "closed";
@@ -296,9 +304,73 @@ const recipes = {
                 "I never use unsalted butter. I don't think the difference is typically noticeable, in any case."
             ]      
         },
+        dadsMince: {
+            type: "internal",
+            course: "main",
+            id: "dads-mince",
+            name: "Dad's Mince",
+            author: "Glen Irain",
+            altText: "A picture of Dad's mince",
+            url: "dads-mince" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "I think the way I make this has drifted somewhat from dad's original recipe, but this is my go-to for mince for just about every recipe. It's a good balance of sweet, salty, and umami, and works for just about every dish.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["1lb", "500g", "mince - see notes"],
+                ["1/4 cup", "BBQ sauce"],
+                ["1/4 cup", "Sweet Chili Sauce"],
+                ["2 tbsp", "Sriracha"],
+                ["2 tbsp", "Worcestershire Sauce"],
+                ["Several grinds", "Salt"],
+                ["Several grinds", "Pepper}"],
+                ["2tsp", "Garlic Powder"],
+                ["2tsp", "Onion Powder"],
+                
+            ],
+            instructions: [
+                "Pre-heat a non-stick frying pan to a medium-high heat, then add the mince. If using a leaner mince, consider adding a teaspoon or two of cooking oil.",
+                "As the mince cooks, begin breaking up the mince using a spatula or wooden spoon. Make sure you stir to cook the meat evenly. Continue until the meat is as broken up as you want it to be.",
+                "Eventually the mince will release fat and water that will boil in the frying pan. Shortly the water will have boiled off, and you'll notice it sounds as though the meat is frying, rather than boiling.",
+                "At this stage, you may wish to drain off excess fat if you have a relatively fatty grade of mince. The mince will continue to fry in the fat you are unable to strain off.",
+                "After optionally draining fat, turn the heat down to medium-low and begin adding the sauce and seasonings. Order is unimportant, just try to make sure that everything gets relatively evenly seasoned by stirring after adding each ingredient. I recommend easing the temperature towards low during this so as not to overcook the mince.",
+                "Once you have integrated all the ingredients, I suggest tasting and adjusting seasoning to preference. Once satisfied, the mince is complete.",
+            ],
+            notes: [
+                "I typically buy 80% lean because it's cheaper. This does require straining residual fat, but you could probably skip this by using 93% lean.",
+                "The most important thing to understand about this recipe is that most of the liquid that comes out will be water. You must boil it off to begin cooking the mince in the fat, which promotes browning and a stronger flavour.",
+            ]      
+        },
 
     },
     aus: {
+        lemonLimeandBitters: {
+            type: "internal",
+            course: "other",
+            id: "lemon-lime-and-bitters",
+            name: "Lemon Lime and Bitters",
+            author: "Zach Irain",
+            altText: "A picture of Lemon Lime and Bitters",
+            url: "lemon-lime-and-bitters" /* Thumbnail can be accessed by using tn standard */, 
+            time: [],
+            preamble: "I'm told by the internet that this is an Australian drink so, begrudgingly, it lives in the Australia section. When I lived in New Zealand, Lemon Lime and Bitters was my go-to restaurant drink. While America has yet to realise just how delicious the drink is, Walmart did begin stocking Angostura bitters at my local Walmart. With an affordable means of getting bitters, I decided to write down a recipe here that is perfectly to my taste.",
+            specialEquipment: [],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                [],
+                [],
+                [],
+                
+            ],
+            instructions: [
+                "",
+                "",
+                "",
+            ],
+            notes: [
+                "",
+                "",
+                ""
+            ]      
+        },
 
     },
     ind: {
@@ -478,13 +550,14 @@ const countryObjects = {
 
 
 // Initial actions taken upon load.
-window.addEventListener("resize", updateSize);
+metricButton.addEventListener("click", unitSwitch);
+imperialButton.addEventListener("click", unitSwitch);
+window.addEventListener("resize", unitSwitch);
 map.addEventListener("click", listMaker);
 window.addEventListener("keydown", windowKeyDownFunctions);
 returnButtons.forEach(button =>{
     button.addEventListener("click", back);}
 )
-unitSwitch.addEventListener("click", toggleUnits)
 countryListButton.addEventListener("click", toggleCountryList);
 
 
@@ -572,20 +645,31 @@ function openCountryList() {
     countryListDiv.style.left = ("0%");
 }
 
-function toggleUnits(event) {
+function unitSwitch(event) {
+    console.log(event.srcElement.id);
+    toggleUnits(event.srcElement.id);
+}
 
-    // Imperial units are an index of 0, metric an index of 1. The instructions are an index of 2.
-    if(currentUnit === "metric") {
-        currentUnit = "imperial";
+function toggleUnits(srcElement) {
+
+    const switchTo = undefined;
+
+    console.log(srcElement);
+    if (srcElement === "unitswitch-imperial") {
+        let switchTo = "imperial";
+        currentUnit = "imperial"
         unitIndex = 0;
-        unitSwitch.innerText = ("Switch to Metric");
+        unitswitchColor.style.left=("0px")
+        console.log("Imperial units should be displaying");
 
-
-    } else if (currentUnit === "imperial") {
-        currentUnit = "metric";
-        unitSwitch.innerText = ("Switch to Imperial");
+    } else if (srcElement === "unitswitch-metric") {
+        let switchTo = "metric";
+        currentUnit = "metric"
         unitIndex = 1;
+        console.log("Metric units should be displaying");
+        unitswitchColor.style.left=("calc(var(--switch-width) - 100px)");
     }
+
 
     let newIngredients = recipes[countrySelectedID][getRecipeName(recipeID)].ingredients;
     console.log(newIngredients)
@@ -685,7 +769,9 @@ function page(direction) {
 function countrySelected(event) { // Needs update to handle inputs from the country list
     console.log(event);
     countrySelectedID = event['srcElement'].id;
-    console.log(countrySelectedID)
+    console.log(countrySelectedID);
+    console.log(Object.keys(resultsContainer));
+    hideHeaders();
     deleteTiles(); // Clear out old tiles
     displayNewTiles(countrySelectedID) // Get new tiles based on country clicked
     console.log("Trying to move page");
@@ -694,6 +780,13 @@ function countrySelected(event) { // Needs update to handle inputs from the coun
     pagesContainer.style.top = (`${pageIndex}%`); // Moves entire page up 100%, which effectively movies viewport down 100%
     console.log(resultsCountryHeader);
     resultsCountryHeader.innerText = (`${countryObjects[countrySelectedID].adjective} Food`)
+}
+
+function hideHeaders() {
+    Object.keys(resultsContainer).forEach(section => {
+        headersContainer[section].style.display = ('none');
+        console.log(`hiding: ${section}`)
+    })
 }
 
 function back(event) {
@@ -722,6 +815,7 @@ function displayNewTiles(id) {
     let  allTiles = recipes[id];
     if (allTiles === undefined) {
         console.log("Error: No recipes for this country.");
+        return
     }
     try {
         allTiles = Object.keys(allTiles);
@@ -752,6 +846,8 @@ function createTile(recipe) {
     console.log(recipe.course);
     console.log(resultsContainer[recipe.course]);
     resultsContainer[recipe.course].appendChild(newTile); // Place within container
+    headersContainer[recipe.course].style.display = ("inline")
+    console.log(`displaying ${recipe.course}`);
     newTile.id = (recipe.id);
     newTile.addEventListener("click", recipeSelected);
 
@@ -828,7 +924,7 @@ function populateRecipe(recipeID) {
         recipePicture.src = (`./resources/${countrySelectedID}-pics/${recipeDetails.url}.png`);
     } catch (err) {
         console.log("No such image exists");
-        recipePicture.src = (`./resources/missing-image.png`);
+        recipePicture.src = (`./resources/missing-image.pngg`);
     }
     recipePicture.alt = `${recipeDetails.altText}`;
     recipeTitle.innerText = (recipeDetails.name);
@@ -915,3 +1011,4 @@ function addNote(note, parent) {
     newNote.classList.add("delete-on-page-up");
     parent.appendChild(newNote);
 }
+
