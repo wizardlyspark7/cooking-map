@@ -1,0 +1,104 @@
+#recipe-page {
+    width: 60%;
+    overflow: hidden;
+    background: rgb(252, 252, 235);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh;
+    min-height: 95vh;
+    margin-top: 5vh;
+    margin-bottom: 2.5vh;
+    border-radius: 2% 2% 0 2%;
+    box-shadow: 5px 5px 10px black;
+}
+
+#recipe-top-bar {
+    display: grid;
+    place-content: center;
+    padding: 2%;
+}
+
+#recipe-content {
+    min-height: 0;
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: rgb(252, 252, 235);
+
+    h1, h2, h3 {
+        text-align: center;
+    }
+
+}
+
+#unitswitch {
+    --switch-width: 250px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 1px solid black;
+    width: var(--switch-width);
+    justify-content: space-between;
+
+    .unitswitch {
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    height: 30px;
+    outline: 1px solid black;
+    mix-blend-mode: difference;
+    color: white;
+    z-index: 100;
+    font-size: 12px;
+    }
+
+    .unitswitch:hover {
+        font-weight: bold;
+    }
+
+    #unitswitch-metric {
+    }
+
+    #unitswitch-imperial {
+    }
+
+    #unitswitch-color {
+        background: black;
+        position: absolute;
+        left: calc(var(--switch-width) - 100px);
+        transition: left 0.3s cubic-bezier(0.42, 0, 0.58, 1.0);
+        top: 0%;
+        width: 100px;
+        height: 50px;
+    }
+}
+
+
+
+#recipe-top-bar {
+    display: grid;
+    place-content: center;
+    padding: 2%;
+}
+
+#recipe-picture {
+    display: block;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recipe-sub-header {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-weight: strong;
+    font-size: 16px;
+
+}

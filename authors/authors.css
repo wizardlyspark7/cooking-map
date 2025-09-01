@@ -41,10 +41,44 @@ h1 {
 
 }
 
-#content {
-}
-
 .button {
     width: 65px;
     height: 65px;
+}
+
+#authors-recipes-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    column-gap: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: start;
+}
+
+.recipe-card {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: text-bottom;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+
+    #thumbnail {
+    height: 150px;
+    width: 250px;
+    outline: 1px solid black;
+    object-fit: fill;
+    }
+}
+
+.recipe-text-container {
+    display: grid;
+    width: 250px;
+    height: 75px;
+    place-items: center;
 }

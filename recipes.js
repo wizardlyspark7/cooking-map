@@ -1,3 +1,19 @@
+/*
+FORMATTING NOTES:
+DO: || DONT:
+ || anything else
+tablespoon || Tablespoon
+"12 tablespoons", "butter" || "12 tablespoons ", " butter" (I WILL ADD SPACES AT IMPLEMENTATION)
+imperial, metric, description || any other layout
+100g || 100 g 
+1/2 || 0.5
+"baking soda" || "baking soda." (Stylically I prefer w/o periods in ingredients)
+["blah blah blah", "blah blah blah"] || ["1. blah blah blah", "2. blah blah blah"] (NO numbers)
+
+TO IMPLEMENT LATER:
+per-step ingredients
+*/
+
 const recipes = {
     "usa": {
         blurb: "Were I a food purist, 90% of the recipes on this site would be tagged as 'American'",
@@ -102,7 +118,7 @@ const recipes = {
             specialEquipment: ["Tin foil"],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
                 ["1", "loaf of french bread."],
-                ["8tbsp", "butter"],
+                ["1 US stick", "8tbsp", "butter"],
                 ["1tbsp", "olive oil"],
                 ["5", "cloves of garlic"],
                 ["a large pinch", "of parmesan cheese"],
