@@ -27,6 +27,10 @@ const resultsCountryHeader = document.querySelector("#results-country-header");
 const imperialButton = document.querySelector("#unitswitch-imperial");
 const metricButton = document.querySelector("#unitswitch-metric");
 const unitswitchColor = document.querySelector("#unitswitch-color");
+const authorURL = {
+                zachIrain: ["Zachary Irain", "zach-irain"],
+                glenIrain: ["Glen Irain", "glen-irain"],
+}
 let recipeID = undefined;
 let countrySelectedID = "";
 let currentUnit = "metric";
@@ -60,26 +64,26 @@ const recipes = {
             course: "baked",
             id: "cookie-pie",
             name: "Cast Iron Cookie Pie",
-            author: "Zach Irain",
+            author: "zachIrain",
             altText: "Picture of a Cast Iron Cookie Pie.",
             url: "cookie-pie", /* Thumbnail can be accessed by using tn standard */
             time: [],
             preamble: "This is my recipe, adjusted from Lauren Allen's from tastesbetterfromscratch.com. This is one of Abby's favourites. I incorporated some of Kenji Alt Lopez steps to making a better cookie.",
             specialEquipment: ["Cast Iron Skillet"],
             ingredients: [
-                ["12tbsp", "170g", "butter - melted"],
-                ["1 cup", "200g", "light brown sugar"],
-                ["1/2 cup", "100g", "white sugar"],
+                ["12tbsp", "butter - melted"],
+                ["1 cup", "light brown sugar"],
+                ["1/2 cup", "white sugar"],
                 ["1", "large egg"],
                 ["1", "egg yolk"],
-                ["1tbsp", "15ml", "vanilla extract"],
-                ["2 cups + 2tbsp", "265g", "all-purpose flour"],
-                ["1/2tsp", "2.5g", "baking soda"],
-                ["1/2tsp", "2.5g", "salt"],
-                ["1 1/2 cups", "270g", "chocolate chips or other chopped chocolate"]
+                ["1tbsp", "vanilla extract"],
+                ["2 cups + 2tbsp", "all-purpose flour"],
+                ["1/2tsp", "baking soda"],
+                ["1/2tsp", "salt"],
+                ["1 1/2 cups", "chocolate chips or other chopped chocolate"]
             ],
             instructions: [
-                "Melt butter for ~45 seconds. Allow to cool for a few minutes",
+                "Melt butter in the microwave, then allow to cool for a few minutes.",
                 "Add melted butter, white sugar, and brown sugar to a bowl and beat with an electric mixer until well-blended.",
                 "Add the egg, egg yolks, and vanilla; then, mix until well integrated.",
                 "Mix in the flour, baking soda, and salt, until barely combined. Then stir in the chocolate chips, reserving a handful for topping the dough.",
@@ -108,7 +112,7 @@ const recipes = {
             course: "main",
             id: "eggs-benedict",
             name: "Eggs Benedict",
-            author: "Zachary Irain",
+            author: "zachIrain",
             altText: "Picture of Eggs Benedict",
             url: "eggs-benedict", /* Thumbnail can be accessed by using tn standard */
             time: [],
@@ -118,15 +122,15 @@ const recipes = {
             ingredients: [
                 ["Hollandaise Sauce"],
                 ["2", "egg yolks"],
-                ["1/4 cup", "60ml", "cream"],
-                ["1/2tsp", "2.5g", "mustard powder"],
-                ["1tbsp", "15ml", "lemon juice"],
-                ["4tbsp", "60g", "butter"],
+                ["1/4 cup", "cream"],
+                ["1/2tsp", "mustard powder"],
+                ["1tbsp", "lemon juice"],
+                ["4tbsp", "butter"],
                 ["Eggs Benedict"],
                 ["4", "eggs"],
                 ["2", "english muffins, halved"],
                 ["6", "rashers of bacon, or desired substitute"],
-                ["1 bunch", "dried or fresh parsley, for a pretty garnish."],               
+                ["1tbsp", "dried or fresh parsley, for a pretty garnish."],               
             ],
             instructions: [
                 "Note: This dish is hard to time correctly. See note for more info.",
@@ -148,7 +152,7 @@ const recipes = {
             course: "entree",
             id: "garlic-bread",
             name: "Garlic Bread",
-            author: "Zachary Irain",
+            author: "zachIrain",
             altText: "Image of garlic bread.",
             url: "garlic-bread", /* Thumbnail can be accessed by using tn standard */ 
             time: [],
@@ -156,15 +160,15 @@ const recipes = {
             specialEquipment: ["Tin foil"],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
                 ["1", "loaf of french bread."],
-                ["8tbsp", "113g", "butter"],
-                ["1tbsp", "15g", "olive oil"],
+                ["8tbsp", "butter"],
+                ["1tbsp", "olive oil"],
                 ["5", "cloves of garlic"],
                 ["a large pinch", "of parmesan cheese"],
-                ["1/2tsp", "2.5g", "salt"],
-                ["1/2tsp", "2.5g", "parsley"],
-                ["1/2tsp", "2.5g", "oregano"],
-                ["1/2tsp", "2.5g", "garlic powder"],
-                ["1/2tsp", "2.5g", "paprika"],
+                ["1/2tsp", "salt"],
+                ["1/2tsp", "parsley"],
+                ["1/2tsp", "oregano"],
+                ["1/2tsp", "garlic powder"],
+                ["1/2tsp", "paprika"],
             ],
             instructions: [
                 "Preheat the oven to 350f/180c",
@@ -185,27 +189,27 @@ const recipes = {
             course: "main",
             id: "alfredo",
             name: "Alfredo (American style)",
-            author: "Zachary Irain",
+            author: "zachIrain",
             altText: "Picture of Alfredo",
             url: "alfredo" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
             preamble: "This is a ridiculously indulgent dish. While it doesn't have the sharply cheesey taste of the original Alfredo, it's nonetheless a delightful 'comfort' meal, and one of the first I dishes I learned in America.",
             specialEquipment: [],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
-                ["1lb", "453g", "fettuccine pasta"]
-                ["6tbsp", "85g", "butter"],
+                ["1lb", "453g", "fettuccine pasta"],
+                ["6tbsp", "butter"],
                 ["5", "cloves garlic - crushed"],
-                ["2tbsp", "30ml", "flour"],
-                ["1 1/2 cups", "355ml", "milk"],
-                ["1 1/2 cups", "355ml", "cream"],
-                ["3 cups", "710ml", "cheddar cheese or other as preferred"],
+                ["2tbsp", "flour"],
+                ["1 1/2 cups", "milk"],
+                ["1 1/2 cups", "cream"],
+                ["3 cups", "cheddar cheese or other as preferred"],
                 ["Several grinds", "Pepper"],
-                ["1tbsp", "15ml", "salt"],
-                ["1tsp", "5ml", "garlic powder"],
-                ["1tsp", "5ml", "onion powder"],
-                ["1tsp", "5ml", "paprika powder"],
-                ["1btsp", "15ml", "cheese powder (optional)"],
-                ["1tsp", "5ml", "parsley (optional, garnish)"],
+                ["1tbsp", "salt"],
+                ["1tsp", "garlic powder"],
+                ["1tsp", "onion powder"],
+                ["1tsp", "paprika powder"],
+                ["1btsp", "cheese powder (optional)"],
+                ["1tsp", "parsley (optional, garnish)"],
             ],
             instructions: [
                 "Melt the butter in a frying pan over low/medium heat. At this point you could bring a salted pot of water large enough for the noodles to a near-boil.",
@@ -230,7 +234,7 @@ const recipes = {
             course: "main",
             id: "sticky-licken-chicken",
             name: "Sticky Licken' Chicken",
-            author: "Glen Irain",
+            author: "glenIrain",
             altText: "Image of Sticky Licken Chicken",
             url: "sticky-licken-chicken" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
@@ -238,10 +242,10 @@ const recipes = {
             specialEquipment: [],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
                 ["6", "Boneless skinless chicken thighs"],
-                ["3tbsp", "45ml", "Fivespice"],
-                ["12oz", "350g", "Sweet Chili Sauce"],
+                ["3tbsp","Fivespice"],
+                ["12oz", "Sweet Chili Sauce"],
                 ["A pinch", "of salt"],
-                ["1tbsp", "15ml", "Sesame seeds"]
+                ["1tbsp", "Sesame seeds"]
                 
             ],
             instructions: [
@@ -262,7 +266,7 @@ const recipes = {
             course: "baked",
             id: "iced-buns",
             name: "Raspberry Iced Buns",
-            author: "Zachary Irain",
+            author: "zachIrain",
             altText: "An image of raspberry iced buns",
             url: "" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
@@ -276,19 +280,19 @@ const recipes = {
                 ["7oz", "200g", "Cold milk"],
                 ["0.7oz", "20g", "Granulated sugar"],
                 ["2tsp", "7g", "Instant yeast"],
-                ["1 1/2tsp", "7.5g", "Salt"],
+                ["1 1/2tsp", "Salt"],
                 ["2", "Eggs, ideally at room temperature"],
                 ["12.7oz", "360g", "Bread flour"],
-                ["3tbsp", "45g", "Butter, at room temperature"],
+                ["3tbsp", "Butter, at room temperature"],
                 ["Some", "water"],
                 ["Icing"],
                 ["9.2oz", "260g", "Powdered sugar"],
-                ["1 1/3tbsp", "20g", "Butter, at room temperature"],
-                ["1/4tsp", "1.5g", "Vanilla extract"],
-                ["0.7oz", "20g", "Boiling water"],
-                ["1 cup", "???g", "Fresh raspberries"],
-                ["2tbsp", "30g", "Granulated sugar"],
-                ["1tbsp", "15g", "Lemon juice"],
+                ["1 1/3tbsp", "2tbsp", "Butter, at room temperature"],
+                ["1/4tsp", "Vanilla extract"],
+                ["0.7oz", "20mk", "Boiling water"],
+                ["1 cup", "Fresh raspberries"],
+                ["2tbsp", "Granulated sugar"],
+                ["1tbsp", "Lemon juice"],
                 ["A pinch", "of salt"],
 
 
@@ -309,14 +313,14 @@ const recipes = {
             course: "main",
             id: "dads-mince",
             name: "Dad's Mince",
-            author: "Glen Irain",
+            author: "glenIrain",
             altText: "A picture of Dad's mince",
             url: "dads-mince" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
             preamble: "I think the way I make this has drifted somewhat from dad's original recipe, but this is my go-to for mince for just about every recipe. It's a good balance of sweet, salty, and umami, and works for just about every dish.",
             specialEquipment: [],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
-                ["1lb", "500g", "mince - see notes"],
+                ["1lb", "mince - see notes"],
                 ["1/4 cup", "BBQ sauce"],
                 ["1/4 cup", "Sweet Chili Sauce"],
                 ["2 tbsp", "Sriracha"],
@@ -348,27 +352,26 @@ const recipes = {
             course: "other",
             id: "lemon-lime-and-bitters",
             name: "Lemon Lime and Bitters",
-            author: "Zach Irain",
+            author: "zachIrain",
             altText: "A picture of Lemon Lime and Bitters",
             url: "lemon-lime-and-bitters" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
             preamble: "I'm told by the internet that this is an Australian drink so, begrudgingly, it lives in the Australia section. When I lived in New Zealand, Lemon Lime and Bitters was my go-to restaurant drink. While America has yet to realise just how delicious the drink is, Walmart did begin stocking Angostura bitters at my local Walmart. With an affordable means of getting bitters, I decided to write down a recipe here that is perfectly to my taste.",
             specialEquipment: [],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
-                [],
-                [],
-                [],
-                
+                ["7fl oz","200ml","Sprite - sugarfree is acceptable."],
+                ["1tbsp", "lime cordial or fresh lime juice"],
+                ["1tsp","Angostura bitters"],
+                ["Some", "ice cubes"],
+                ["1 slice", "lime or lemon, for decoration"]
             ],
             instructions: [
-                "",
-                "",
-                "",
+                "Mix all ingredients together. Place lemon or lime wedge on rim of glass, with a cut, or drop it into the drink to infuse further flavour.",
             ],
             notes: [
-                "",
-                "",
-                ""
+                "Recipes for drinks are very underwhelming.",
+                "I love a bitters-forward flavour, as otherwise this can just taste like a funkier sprite. For a milder taste, use 1/2tsp of bitters instead.",
+                "The Angostura bitters I have, which I understand is only made by one company and therefore will be the same globally, is approximately 45% alcohol by volume. Therefore this drink contains about 2ml of alcohol, making it about 0.9% alcohol. A standard drink in the USA is 18ml, so you would need to drink about 40 of these to get meaningfully intoxicated."
             ]      
         },
 
@@ -388,7 +391,7 @@ const recipes = {
             course: "main",
             id: "butter-chicken",
             name: "Butter Chicken",
-            author: "Zachary Irain",
+            author: "zachIrain",
             altText: "Picture of Butter Chicken.",
             url: "butter-chicken" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
@@ -428,24 +431,24 @@ const recipes = {
             course: "entree",
             id: "braised-potatoes",
             name: "Braised Potatoes",
-            author: "Zachary Irain",
+            author: "zachIrain",
             altText: "An image of Korean braised potatoes.",
             url: "braised-potatoes" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
             preamble: "This is adapted from a recipe by Sunny Lee on seriouseats.com. I've tweaked this recipe over time, mostly to try and bring it closer to Abby's recollection of how this dish tasted at her favourite restaurant, Sam Hawk, which sadly closed during Covid. I altered this recipe in a few ways. First, I dramatically increased the recipe size - I love cooking, but I want to minimise how often I'm washing dishes. Second, I tweaked the balance of soy sauce, water, and sugar until I found a mix that perfectly suited my palatte. I replaced some of the soy sauce with low-sodium soy sauce, to preserve the umami flavour without an overload on salt. Lastly, I add honey when I remember to because that brings the sweetness up to what Abby is familiar with.",
             specialEquipment: ["High-rimmed frying pan with lid. Large pot acceptable substitute."],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
-                ["7tbsp", "105ml", "soy sauce"],
-                ["2tbsp", "30ml", "low-sodium soy sauce"],
+                ["7tbsp", "soy sauce"],
+                ["2tbsp", "low-sodium soy sauce"],
                 ["9tbsp", "135ml", "water"],
-                ["6tbsp", "90g", "brown sugar"],
+                ["6tbsp", "brown sugar"],
                 ["a dash of", "fish sauce"],
-                ["1tbsp", "15ml", "honey (Optional)"],
+                ["1tbsp", "honey (Optional)"],
                 ["3", "cloves garlic - crushed"],
                 ["2lb", "900g", "potatoes - weigh once prepared."],
-                ["3tbsp", "45ml", "sesame oil"],
-                ["1tbsp", "15ml", "sesame seeds"],
-                ["2tbsp", "30ml", "cooking oil, eg vegetable"]
+                ["3tbsp", "sesame oil"],
+                ["1tbsp", "sesame seeds"],
+                ["2tbsp", "cooking oil, eg vegetable"]
                 
             ],
             instructions: [
@@ -490,7 +493,7 @@ const recipes = {
             course: "main",
             id: "paprika-chicken",
             name: "Paprika Chicken",
-            author: "Zach Irain",
+            author: "zachIrain",
             altText: "A picture of Paprika Chicken",
             url: "paprika-chicken" /* Thumbnail can be accessed by using tn standard */, 
             time: [],
@@ -498,15 +501,15 @@ const recipes = {
             specialEquipment: [],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
                 ["2", "chicken breasts"],
-                ["1 cup", "236ml", "heavy cream"],
-                ["3/4 cup", "177ml", "chicken stock"],
+                ["1 cup", "heavy cream"],
+                ["3/4 cup", "chicken stock"],
                 ["2", "cloves garlic - crushed"],
-                ["2tbsp", "30ml", "smokey paprika"],
+                ["2tbsp", "smokey paprika"],
                 ["A pinch", "of cayenne pepper"],
                 ["Some", "salt - to taste"],
                 ["Some", "pepper - to taste"],
                 ["Some", "seasoning for the chicken - your choice"],
-                ["A few tablespoons", "A few dozen millilitres", "cooking oil - for frying."]
+                ["A few tablespoons", "cooking oil - for frying."]
 
                 
             ],
@@ -646,7 +649,6 @@ function openCountryList() {
 }
 
 function unitSwitch(event) {
-    console.log(event.srcElement.id);
     toggleUnits(event.srcElement.id);
 }
 
@@ -672,7 +674,6 @@ function toggleUnits(srcElement) {
 
 
     let newIngredients = recipes[countrySelectedID][getRecipeName(recipeID)].ingredients;
-    console.log(newIngredients)
     let counter = 0;
     let allUnits = document.querySelectorAll(".ingredient-unit");
     allUnits.forEach(unit => {
@@ -684,8 +685,6 @@ function toggleUnits(srcElement) {
         
         counter++
     })
-    console.log(allUnits);
-
 }
 
 function listMaker(event) {
@@ -917,6 +916,7 @@ function populateRecipe(recipeID) {
     recipeIngredients = document.querySelector("#recipe-ingredients");
     recipeInstructions = document.querySelector("#recipe-instructions");
     recipeNotes = document.querySelector("#recipe-notes");
+    recipeAuthor = document.querySelector("#recipe-author");
 
     // Populate basic info
     try {
@@ -924,11 +924,13 @@ function populateRecipe(recipeID) {
         recipePicture.src = (`./resources/${countrySelectedID}-pics/${recipeDetails.url}.png`);
     } catch (err) {
         console.log("No such image exists");
-        recipePicture.src = (`./resources/missing-image.pngg`);
+        recipePicture.src = (`./resources/missing-image.png`);
     }
     recipePicture.alt = `${recipeDetails.altText}`;
     recipeTitle.innerText = (recipeDetails.name);
     recipeAbout.innerText = (recipeDetails.preamble);
+    recipeAuthor.innerText = (authorURL[recipeDetails.author][0]);
+    recipeAuthor.href = (`./authors/${authorURL[recipeDetails.author][1]}.html`)
     console.log(recipeDetails.ingredients);
     recipeDetails.ingredients.forEach(ingredient => { // Ingredients/Instructions are a bit more complicated.
         addIngredient(ingredient, recipeIngredients);
@@ -959,7 +961,6 @@ function addIngredient(ingredient, parent) {
     // TWO components, then the ingredient is measurement system agnostic
     // THREE components, then the ingredient is IMPERIAL, METRIC, NAME
     console.log(ingredient);
-    console.log(`Adding: ${ingredient[0]}, ${ingredient[1]}, ${ingredient[2]}`);
     const ingredientLength = ingredient.length;
     let ingredientUnit = undefined;
     if (ingredientLength === 2) {
@@ -985,7 +986,7 @@ function addIngredient(ingredient, parent) {
 
 
 
-    if(ingredient.length === 1) {
+    if(ingredientLength === 1) {
         console.log("Item is a title.")
         newIngredient.innerText=(`${ingredient[0]}`);
     } else {
@@ -996,8 +997,6 @@ function addIngredient(ingredient, parent) {
 }
 
 function addInstruction(instruction, parent) {
-
-    console.log(`Adding: ${instruction}`);
     const newInstruction = document.createElement("li");
     newInstruction.classList.add("instruction-item");
     newInstruction.classList.add("delete-on-page-up");

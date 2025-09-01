@@ -453,6 +453,10 @@ html, body {
 }
 
 .recipe-sub-header {
-    margin-top: 5px;
-    margin-top: 5px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-weight: strong;
+    font-size: 16px;
+
 }

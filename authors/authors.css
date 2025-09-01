@@ -1,0 +1,33 @@
+html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}   
+
+html, body {
+    margin: 0;
+    background: #0099ff;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    outline: 2px solid black;
+    float: right;
+}
+
+#main {
+    box-sizing: border-box;
+    background: rgb(252, 252, 235);
+    min-height: 95vh;
+    margin-top: 2.5vh;
+    margin-bottom: 5vh;
+    border-radius: 2%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 5px 5px 10px black;
+    padding: 3%;
+
+}
