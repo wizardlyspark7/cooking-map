@@ -27,18 +27,15 @@ const resultsCountryHeader = document.querySelector("#results-country-header");
 const imperialButton = document.querySelector("#unitswitch-imperial");
 const metricButton = document.querySelector("#unitswitch-metric");
 const unitswitchColor = document.querySelector("#unitswitch-color");
-const authorURL = {
-                zachIrain: ["Zachary Irain", "zach-irain"],
-                glenIrain: ["Glen Irain", "glen-irain"],
-}
+
 let recipeID = undefined;
 let countrySelectedID = "";
 let currentUnit = "metric";
 let unitIndex = 1;
 let countryListStatus = "closed";
 
-
-import recipes from './recipes.js';
+import {authorInfo} from './recipes.js';
+import {recipes} from './recipes.js';
 
 console.log(recipes);
 
@@ -433,8 +430,8 @@ function populateRecipe(recipeID) {
     recipePicture.alt = `${recipeDetails.altText}`;
     recipeTitle.innerText = (recipeDetails.name);
     recipeAbout.innerText = (recipeDetails.preamble);
-    recipeAuthor.innerText = (authorURL[recipeDetails.author][0]);
-    recipeAuthor.href = (`./authors/${authorURL[recipeDetails.author][1]}.html`)
+    recipeAuthor.innerText = (authorInfo[recipeDetails.author][0]);
+    recipeAuthor.href = (`./authors/${authorInfo[recipeDetails.author][1]}.html`)
     console.log(recipeDetails.ingredients);
     recipeDetails.ingredients.forEach(ingredient => { // Ingredients/Instructions are a bit more complicated.
         addIngredient(ingredient, recipeIngredients);
@@ -447,6 +444,7 @@ function populateRecipe(recipeID) {
     });
     
 }
+
 
 
 function getRecipeName(recipeID) {

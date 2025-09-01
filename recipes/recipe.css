@@ -1,36 +1,47 @@
-#recipe-page {
+html, body {
+    margin: 0;
+    background: #0099ff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#main {
     width: 60%;
-    overflow: hidden;
     background: rgb(252, 252, 235);
     margin: auto;
     display: flex;
     flex-direction: column;
-    max-height: 95vh;
     min-height: 95vh;
     margin-top: 5vh;
-    margin-bottom: 2.5vh;
-    border-radius: 2% 2% 0 2%;
+    border-radius: 2% 2% 2% 2%;
     box-shadow: 5px 5px 10px black;
-}
-
-#recipe-top-bar {
-    display: grid;
-    place-content: center;
-    padding: 2%;
 }
 
 #recipe-content {
     min-height: 0;
     flex-grow: 1;
-    overflow-y: scroll;
     padding-left: 2%;
     padding-right: 2%;
     background: rgb(252, 252, 235);
-
+    border-radius: 2% 2% 2% 2%;
     h1, h2, h3 {
         text-align: center;
     }
+}
 
+#menu-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#back {
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
 }
 
 #unitswitch {

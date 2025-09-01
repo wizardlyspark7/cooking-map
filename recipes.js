@@ -492,4 +492,11 @@ const recipes = {
     }
 };
 
-export default recipes;
+const authorInfo = {
+                zachIrain: ["Zach Irain", "zach-irain"],
+                glenIrain: ["Glen Irain", "glen-irain"],
+}
+
+export {recipes};
+
+export {authorInfo};

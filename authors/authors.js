@@ -1,4 +1,4 @@
-import recipes from '../recipes.js';
+import {recipes} from '../recipes.js';
 
 
 // Import all recipes
@@ -43,9 +43,10 @@ for (const recipePair of recipePairs) {
     console.log(currentRecipe);
 
     // Create tile
-    const newTile = document.createElement("div");
+    const newTile = document.createElement("a");
     newTile.classList.add("recipe-card");
     newTile.id = (`${currentRecipe.id}`)
+    newTile.href = (`../recipes/recipe.html?recipe=${currentRecipe.id}`)
     authorsRecipesContainer.appendChild(newTile);
 
     // Recipe title
