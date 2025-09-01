@@ -1,6 +1,8 @@
 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3 -> 3 country letter codes
 https://www.figma.com/community/file/1434180489810036303 -> SVG of all flags
-
+<a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by hqrloveq - Flaticon</a> -> Attribution for icon pack. Place in 'about'?
+https://www.flaticon.com/packs/basic-ui-121 -> Icon source
+https://www.flaticon.com/packs/basic-ui-elements-7 -> Icon source
 git stuff
 1. git status (check git working)
 2. git add . (or file name eg git add index.html index.js index.css, '.' adds all)

@@ -55,7 +55,6 @@ html, body {
 }
 
 #country-list-toggle-button {
-    transform: rotate(90deg);
     width: 80%;
     cursor: pointer;
 }
