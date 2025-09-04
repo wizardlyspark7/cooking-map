@@ -278,7 +278,7 @@ const recipes = {
             preamble: "I think the way I make this has drifted somewhat from dad's original recipe, but this is my go-to for mince for just about every recipe. It's a good balance of sweet, salty, and umami, and works for just about every dish.",
             specialEquipment: [],
             ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
-                ["1lb", "mince - see notes"],
+                ["1lb", "500g", "mince - see notes"],
                 ["1/4 cup", "BBQ sauce"],
                 ["1/4 cup", "Sweet Chili Sauce"],
                 ["2 tbsp", "Sriracha"],

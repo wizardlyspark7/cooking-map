@@ -27,6 +27,7 @@ const resultsCountryHeader = document.querySelector("#results-country-header");
 const imperialButton = document.querySelector("#unitswitch-imperial");
 const metricButton = document.querySelector("#unitswitch-metric");
 const unitswitchColor = document.querySelector("#unitswitch-color");
+let checkBoxes = document.querySelectorAll(".ingredient-item");
 
 let recipeID = undefined;
 let countrySelectedID = "";
@@ -442,7 +443,14 @@ function populateRecipe(recipeID) {
     recipeDetails.notes.forEach(note =>{
         addNote(note, recipeNotes)
     });
-    
+
+    checkBoxes = document.querySelectorAll(".ingredient-item");
+    checkBoxes.forEach(item => {
+        item.addEventListener('click', () => {
+            console.log("checked.");
+            item.classList.toggle('checked');
+        })
+    })
 }
 
 
