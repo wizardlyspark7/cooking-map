@@ -1,23 +1,58 @@
+/*
+TO DO: Add @media rule ("orientation") to trigger this list opening or something. 
+TO DO: Add @media rule ("hover") to disable this if the user cannot hover. 
+*/
+
+@media (min-width >= 640px) {
+    html, body {
+        background: red;
+    }
+}
+
+@media (min-width >= 768px) {
+    body {
+        background: orange;
+    }
+}
+
+@media (min-width >= 1024px) {
+    body {
+        background: yellow;
+    }
+}
+
+@media (min-width >= 1280px) {
+    body {
+        background: green;
+    }
+}
+
+
+
 :root {
     /*variable declaration*/
     --ocean-heght: 90vh;
     --top-bar-height: 9.7vh;
 
+    /*
+    TO DO: Add @media rule ("prefers-color-scheme") to control color schemes. Also make colors variables so I can use primary, secondary, tertiary etc. 
+    */
+
 }
 
 html {
-    scrollbar-width: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 }   
 
-html, body {
+body {
     margin: 0;
     background: #0099ff;
     overflow: hidden;
 }
 
 #country-list {
+
     position: absolute;
     background: grey;
     transition: left 1s cubic-bezier(0.5, 0, 0.5, 1);
@@ -194,6 +229,7 @@ html, body {
 }
 
 #country-block {
+    
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -262,8 +298,8 @@ html, body {
     height: 95dvh;
     margin-top: 2.5vh;
     margin-bottom: 5vh;
-    border-radius: 2% 2% 0% 2%;
-    width: 40%;
+    border-radius: 20px 20px 0% 20px;
+    width: 70%;
     min-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -380,7 +416,7 @@ html, body {
     min-height: 95dvh;
     margin-top: 5vh;
     margin-bottom: 2.5vh;
-    border-radius: 2% 2% 0 2%;
+    border-radius: 20px 20px 0 20px;
     box-shadow: 5px 5px 10px black;
 }
 
