@@ -139,6 +139,11 @@ html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 }   
+
+h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
 #country-list {
 
     position: absolute;
@@ -427,6 +432,8 @@ html {
     border-bottom: 1px solid black;
     margin-top: 1%;
     margin-bottom: 1%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .menu-subcontent {
@@ -443,7 +450,7 @@ html {
 .recipe-card {
     position: relative;
     width: 250px;
-    height: 250px;
+    height: 270px;
     overflow: hidden;
     text-align: center;
     vertical-align: text-bottom;
@@ -488,6 +495,8 @@ html {
     width: 250px;
     height: 75px;
     place-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #recipe-page {

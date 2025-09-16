@@ -146,7 +146,7 @@ const recipes = {
             type: "internal",
             course: "main",
             id: "alfredo",
-            name: "Alfredo (American style)",
+            name: "American Alfredo",
             author: "zachIrain",
             altText: "Picture of Alfredo",
             url: "alfredo" /* Thumbnail can be accessed by using tn standard */, 

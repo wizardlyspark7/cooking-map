@@ -359,7 +359,7 @@ function createTile(recipe) {
     newTile.addEventListener("click", recipeSelected);
 
     // Create new text div
-    const newName = document.createElement("div");
+    const newName = document.createElement("h3");
     newName.textContent = (`${recipe.name}`);
     newName.classList.add("recipe-text-container");
     newTile.appendChild(newName); // Place within container
