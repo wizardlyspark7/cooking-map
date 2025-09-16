@@ -3,6 +3,7 @@ let mapWidth = map.clientWidth;
 let mapHeight = map.clientHeight;
 let pointsClicked = '<polygon points="';
 let pageIndex = 0;
+const rootComputedStyles = window.getComputedStyle(document.documentElement);
 const flagImage = document.querySelector("#flag");
 const countryBlock = document.querySelector("#country-block");
 const countryName = document.querySelector("#country-name");
@@ -235,6 +236,9 @@ function deleteRecipeDelay() { // TODO: Have this function delay then re-enable 
 }
 
 function changeFlag(event) {
+    if (rootComputedStyles.getPropertyValue("--do-not-display-country-block") === "true") {
+        return
+    }
     let countryID = event['srcElement'].id;
     console.log(countryID);
     event.preventDefault();
@@ -247,6 +251,7 @@ function changeFlag(event) {
     countryName.textContent=(`${countryObjects[countryID]["countryName"]}`);
     countryName.style.margin=("0vmin 1vmin");
     countryBlock.style.zIndex = "100";
+    console.log("country block adjusted");
 }
 
 function removeFlag(event) {
@@ -254,6 +259,7 @@ function removeFlag(event) {
     countryName.textContent=("");    
     countryName.style.margin=("0vmin 0vmin");
     countryBlock.style.zIndex = "-1";
+    console.log("country block adjusted (2)");
 }
 
 function page(direction) {
@@ -268,7 +274,7 @@ function page(direction) {
 }
 
 function countrySelected(event) { // Needs update to handle inputs from the country list
-    console.log(event);
+    console.log("a country has been selected");
     countrySelectedID = event['srcElement'].id;
     console.log(countrySelectedID);
     console.log(Object.keys(resultsContainer));
