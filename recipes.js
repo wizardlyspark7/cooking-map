@@ -381,10 +381,65 @@ const recipes = {
 
     },
     jpn: {
-
+        chickenKatsu: {
+            type: "internal",
+            course: "main",
+            id: "chicken-katsu",
+            name: "Chicken Katsu",
+            author: "zachIrain",
+            altText: "Image of Chicken Katsu",
+            url: "chicken-katsu" /* Thumbnail can be accessed by using tn standard */, 
+            time: ["40 minutes"],
+            preamble: "My current recipe for one of my favourite dishes that dad would make for me when I was growing up.",
+            specialEquipment: ["Meat mallet"],
+            ingredients: [ /* Format: [Imperial, Metric, text]. Dont capitalise the text unless justified. */
+                ["Dry marinade"],
+                ["Some", "salt"],
+                ["Some", "pepper"],
+                ["Some", "garlic powder"],
+                ["Some", "onion powder"],
+                ["Some", "paprika"],
+                ["2", "Chicken Breasts"],
+                ["Dredging"],
+                ["2", "Eggs"],
+                ["3.5oz", "100g", "Flour"],          
+                ["6oz", "170g", "Panko breadcrumbs"],
+                ["1tbsp", "15ml", "Sriracha"],
+                ["Some", "salt"],
+                ["Some", "pepper"],
+                ["Some", "garlic powder"],
+                ["Some", "onion powder"],
+                ["Some", "paprika"],
+                ["A very small pinch", "MSG"],
+                ["Cooking"],
+                ["2 cups", "Vegetable oil or other neutral cooking oil"],
+                ["Garnishes"],
+                ["Some", "chicken flavoured seasoning - e.g. McCormick's Rotisserie Chicken Seasoning"],
+                ["Some", "Tonkatsu Sauce"],
+                ["Some", "Kewpie Mayonnaise"],
+            ],
+            instructions: [
+                "Ideally the night before: Slice the chicken breasts in half horizontally. For most chicken breasts slicing once should be enough, but for truly enormous breasts you can maybe slice into thirds. Season generously with the seasoning ingredients.",
+                "When ready to cook, take the chicken out of the fridge to warm while you prepare.",
+                "Fill a large frying pan with a layer of oil that will reach half way up the chicken fillets. Have more oil on hand to top up if needed.",
+                "Prepare the dredge: Fill one plate or shallow bowl with all of the flour, and a healthy amount (At least 1tsp) of the salt, pepper, garlic powder, onion powder, and paprika. Fill a bowl with the two eggs, sriracha, and MSG. Fill another plate or shallow bowl with 3/4 of the Panko. Finally, spread the remaining panko on a large plate.",
+                "Dredge the chicken first in the flour, then in the egg, and lastly in the panko. At each step ensure that every piece of the chicken is coated with the respective coating. Consider using a different hand for the wet and dry steps to minimise build up on your hands. Once dredged, plate on the panko-spread plate to prevent the coating sticking.",
+                "Towards the end of the dredging heat the frying pan on a high heat until it reaches a hot temperature, then lower the heat to medium-high. Prepare a wire rack with paper towels underneath near the frying pan.",
+                "When ready, add the chicken fillets in batches to the frying pan. Don't worry about overcrowding - but do not stack or let pieces touch. Manage the temperature to ensure a healthy amount of frying is occurring but do not leave your element on a high temperature unless you have just added new pieces. Flip every minute or so to keep an eye on the cook. Pull once coating is sufficiently browned, or thickest part of each fillet has reached 155f/68c. Place on wire rack to cool.",
+                "Sprinkle some of the chicken seasoning onto the fillets immediately after placing on the rack. It will absorb into the chicken with the oil. After a minute or so, flip and season the other side.",
+                "When serving, place onto a cutting board and chop into strips perpendicular to the longest side about 1.5cm/0.5in wide.",
+                "I recommend serving with rice and drizzling tonkatsu sauce then kewpie mayo on top.",
+            ],
+            notes: [
+                "I strongly recommend serving this on a bed of rice, drizzled with tonkatsu sauce, then kewpie mayonnaise. Otherwise, it's just a slightly crispier schnitzel.",
+                "Seasoning the night before will much a big difference - I promise.",
+                "The tough part of this is definitely the heat control. You need to balance evenly browning the panko and cooking the chicken. It will probably take practice. It can help to rotate the chicken and move around the pan to give a more even distribution of heat.",
+                "Don't be afraid to serve pretty-side up! Others probably won't notice if one side is a bit less crispy or too browned",
+            ]      
+        },
     },
     kor: {
-        BraisedPotatoes: {
+        braisedPotatoes: {
             type: "internal",
             course: "entree",
             id: "braised-potatoes",
@@ -437,7 +492,6 @@ const recipes = {
                 "If you don't have low-sodium soy sauce, I recommend substituting the 2tbsp low-sodium with 1tbsp regular soy sauce. Any more and I find the dish has a very salt aftertaste, which is not worth it for the additional umaminess."
             ]      
         },
-
     },
     gbr: {
 

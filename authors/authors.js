@@ -50,7 +50,7 @@ for (const recipePair of recipePairs) {
     authorsRecipesContainer.appendChild(newTile);
 
     // Recipe title
-    const recipeTitle = document.createElement("div");
+    const recipeTitle = document.createElement("h3");
     recipeTitle.innerText = (`${currentRecipe.name}`);
     recipeTitle.classList.add("recipe-text-container");
     newTile.appendChild(recipeTitle);

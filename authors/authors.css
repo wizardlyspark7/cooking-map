@@ -1,3 +1,42 @@
+
+:root {
+    /*variable declaration*/
+    /*standard values*/
+    --ocean-heght: 90vh;
+    --top-bar-height: 9.7vh;
+    --side-margin: 25%;
+    --button-standard-size: 65px;
+    --p-text-size: 16px;
+    --recipe-tile-additional-size: 0px;
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+    /*
+    TO DO: Add @media rule ("prefers-color-scheme") to control color schemes. Also make colors variables so I can use primary, secondary, tertiary etc. 
+    */
+
+body {
+    margin: 0;
+    overflow: scroll;
+    background: #0099ff;
+}
+
+
 html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
@@ -20,10 +59,12 @@ h1 {
 }
 
 .portrait {
+    display: inline;
     outline: 2px solid black;
-    width: 500px;
+    max-width: 500px;
+    min-width: 200px;
     float: right;
-    margin: 10px;
+    margin: 20px;
 }
 
 #frame {
@@ -32,8 +73,8 @@ h1 {
     min-height: 95vh;
     margin-top: 2.5vh;
     margin-bottom: 5vh;
-    border-radius: 2%;
-    width: 60%;
+    border-radius: 20px 20px 0% 20px;
+    width: calc(100% - (var(--side-margin) * 2));
     margin-left: auto;
     margin-right: auto;
     box-shadow: 5px 5px 10px black;
@@ -42,18 +83,18 @@ h1 {
 }
 
 .button {
-    width: 65px;
-    height: 65px;
+    width: var(--button-standard-size);
 }
-
 #authors-recipes-container {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
-    column-gap: 5%;
+    column-gap: 20px;
+    row-gap: 20px;
     padding-left: 5%;
     padding-right: 5%;
-    justify-content: start;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a {
@@ -64,8 +105,7 @@ a {
 
     position: relative;
     width: 250px;
-    height: 250px;
-    overflow: hidden;
+    height: calc(250px + var(--recipe-tile-additional-size) + 1px);
     text-align: center;
     vertical-align: text-bottom;
     font-size: 25px;
@@ -88,6 +128,217 @@ a {
 .recipe-text-container {
     display: grid;
     width: 250px;
-    height: 75px;
+    height: 50px;
     place-items: center;
+}
+
+/*Very small non-screens*/
+@media screen and (min-width: 720px) and (hover:none) {
+    :root {
+        --side-margin: 2%;
+        --button-standard-size: 130px;
+        --p-text-size: 37px;
+        --recipe-tile-additional-size: 15px;
+
+        body {
+            background-color: purple;
+        }
+
+        h1 {
+            font-size: 80px;
+        }
+
+        h2 {
+            font-size: 65px;
+        }
+
+        h3 {
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 37px;
+        }
+
+    }
+
+    .portrait {
+        float: none;
+        margin: auto;
+    }
+}
+
+/*Small non-screens*/
+@media screen and (min-width: 980px) and (hover:none) {
+    :root {
+        --side-margin: 2%;
+        --button-standard-size: 130px;
+        --p-text-size: 32px;
+        --recipe-tile-additional-size: 10px;
+
+        body {
+            background-color: red;
+        }
+
+        h1 {
+            font-size: 70px;
+        }
+
+        h2 {
+            font-size: 50px;
+        }
+
+        h3 {
+            font-size: 35px;
+        }
+
+        p {
+            font-size: 32px;
+        }
+    }
+
+    .portrait {
+        float: none;
+        display: block;
+        margin: auto;
+    }
+}
+
+/*Medium non-screens*/
+@media screen and (min-width: 1080px) and (hover:none) {
+    :root {
+        --side-margin: 6%;
+        --button-standard-size: 100px;
+        --p-text-size: 23px;
+        --recipe-tile-additional-size: 5px;
+
+        body {
+            background-color: orange;
+        }
+        
+        h1 {
+            font-size: 65px;
+        }
+
+        h2 {
+            font-size: 45px;
+        }
+
+        h3 {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 23px;
+        }
+    }
+
+    .portrait {
+        float: none;
+        display: block;
+        margin: auto;
+    }
+}
+
+/*Large non-screens*/
+@media screen and (min-width: 1280px) and (hover:none) {
+    :root {
+        --side-margin: 13%;
+        --button-standard-size: 85px;
+        --p-text-size: 19px;
+        --recipe-tile-additional-size: 3px;
+
+        body {
+            background-color: yellow;
+        }
+
+        h1 {
+            font-size: 53px;
+        }
+
+        h2 {
+            font-size: 38px;
+        }
+
+        h3 {
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 19px;
+        }
+    }
+
+    .portrait {
+        float: right;
+        margin: 20px;
+    }
+}
+
+/*Very large non-screens*/
+@media screen and (min-width: 1920px) and (hover:none) {
+    :root {
+        --side-margin: 25%;
+        --button-standard-size: 65px;
+        --p-text-size: 16px;
+
+        body {
+            background-color: green;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        h2 {
+            font-size: 35px;
+        }
+
+        h3 {
+            font-size: 25px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    .portrait {
+        float: right;
+        margin: 20px;
+    }
+}
+
+/*Narrow screens*/
+@media screen and (max-width: 1920px) and (hover) {
+    :root {
+        --side-margin: 15%;
+
+        body {
+            background-color: cyan;
+        }
+    }
+
+    .portrait {
+        float: right;
+        margin: 20px;
+    }
+}
+
+/*Picture clipping*/
+@media screen and (max-width: 1500px) and (hover) {
+    :root {
+        --side-margin: 10%;
+
+        body {
+            background-color: turquoise;
+        }
+    }
+
+    .portrait {
+        float: none;
+        display: block;
+        margin: auto;
+        width: 80%;
+    }
 }

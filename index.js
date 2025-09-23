@@ -164,7 +164,7 @@ function toggleUnits(srcElement) {
         let switchTo = "imperial";
         currentUnit = "imperial"
         unitIndex = 0;
-        unitswitchColor.style.left=("0px")
+        unitswitchColor.style.left=("0%")
         console.log("Imperial units should be displaying");
 
     } else if (srcElement === "unitswitch-metric") {
@@ -172,7 +172,7 @@ function toggleUnits(srcElement) {
         currentUnit = "metric"
         unitIndex = 1;
         console.log("Metric units should be displaying");
-        unitswitchColor.style.left=("calc(var(--switch-width) - 100px)");
+        unitswitchColor.style.left=("50%");
     }
 
 
@@ -425,6 +425,7 @@ function populateRecipe(recipeID) {
     let recipeInstructions = document.querySelector("#recipe-instructions");
     let recipeNotes = document.querySelector("#recipe-notes");
     let recipeAuthor = document.querySelector("#recipe-author");
+    let recipePermaLink = document.querySelector("#hard-link");
 
     // Populate basic info
     try {
@@ -457,6 +458,9 @@ function populateRecipe(recipeID) {
             item.classList.toggle('checked');
         })
     })
+
+    //Populate hard link
+    recipePermaLink.href = (`./recipes/recipe.html?recipe=${recipeDetails.id}`);
 }
 
 
@@ -526,6 +530,7 @@ function addNote(note, parent) {
     let newNote = document.createElement("li");
     newNote.innerText = (note);
     newNote.classList.add("delete-on-page-up");
+    newNote.classList.add("note-item");
     parent.appendChild(newNote);
 }
 
