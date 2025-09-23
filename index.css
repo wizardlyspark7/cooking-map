@@ -348,7 +348,7 @@ h3 {
     }
 
     .map-menu-button {
-        display: grid;
+        display: none;
         background: grey;
         border-radius: 5px;
         padding: 1%;
@@ -665,7 +665,7 @@ h3 {
         --color-width: 33%;
         background: black;
         position: absolute;
-        left: 0%;
+        left: 50%;
         transition: left 0.3s cubic-bezier(0.42, 0, 0.58, 1.0);
         top: 0%;
         width: 50%;

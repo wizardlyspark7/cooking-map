@@ -35,6 +35,7 @@ let countrySelectedID = "";
 let currentUnit = "metric";
 let unitIndex = 1;
 let countryListStatus = "closed";
+let filteredRecipe = [];
 
 import {authorInfo} from './recipes.js';
 import {recipes} from './recipes.js';
@@ -179,13 +180,14 @@ function toggleUnits(srcElement) {
     let newIngredients = recipes[countrySelectedID][getRecipeName(recipeID)].ingredients;
     let counter = 0;
     let allUnits = document.querySelectorAll(".ingredient-unit");
+    console.log(allUnits);
+    console.log(filteredRecipe)
     allUnits.forEach(unit => {
-        if(newIngredients[counter].length === 2) {
-            unit.innerHTML = newIngredients[counter][0];
-        } else {
-            unit.innerHTML = newIngredients[counter][unitIndex];
-        }
-        
+        console.log(unit);
+        console.log(filteredRecipe[counter].at(-1));
+        if(filteredRecipe[counter].length === 3) {
+            unit.innerHTML = filteredRecipe[counter][unitIndex];
+        }        
         counter++
     })
 }
@@ -411,6 +413,17 @@ function recipeSelected(event) {
         window.open(recipes[countrySelectedID][recipeName].websiteLink, '_blank');
     }
 
+    prepUnitList(recipeName);
+}
+
+function prepUnitList(recipeName) {
+    console.log("Prepping ingredient unit list");
+    let unfilteredRecipe = recipes[countrySelectedID][recipeName].ingredients;
+    unfilteredRecipe.forEach(array => {
+        if(array.length > 1) {
+            filteredRecipe.push(array);
+        }
+    })
 }
 
 function populateRecipe(recipeID) {

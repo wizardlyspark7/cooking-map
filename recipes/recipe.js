@@ -7,6 +7,7 @@ const recipeURL = urlParams.get('recipe');
 let countrySelectedID = getCountry();
 console.log(countrySelectedID);
 let recipeName = getRecipeName(recipeURL);
+let filteredRecipe = [];
 import {recipes} from '../recipes.js';
 import {authorInfo} from '../recipes.js';
 const recipeChosen = recipes[countrySelectedID][recipeName];
@@ -22,6 +23,7 @@ backButton.addEventListener("click", () => {
     window.history.back();
 })
 
+prepUnitList(recipeName);
 
 if(recipeChosen === undefined) {
     console.log("no recipe selected.");
@@ -45,6 +47,16 @@ function getCountry() {
         return returnValue;
     }
 
+}
+
+function prepUnitList(recipeName) {
+    console.log("Prepping ingredient unit list");
+    let unfilteredRecipe = recipes[countrySelectedID][recipeName].ingredients;
+    unfilteredRecipe.forEach(array => {
+        if(array.length > 1) {
+            filteredRecipe.push(array);
+        }
+    })
 }
 
 function getRecipeName(recipeID) {
@@ -75,7 +87,7 @@ function toggleUnits(srcElement) {
         let switchTo = "imperial";
         currentUnit = "imperial"
         unitIndex = 0;
-        unitswitchColor.style.left=("0px")
+        unitswitchColor.style.left=("0%")
         console.log("Imperial units should be displaying");
 
     } else if (srcElement === "unitswitch-metric") {
@@ -83,20 +95,20 @@ function toggleUnits(srcElement) {
         currentUnit = "metric"
         unitIndex = 1;
         console.log("Metric units should be displaying");
-        unitswitchColor.style.left=("calc(var(--switch-width) - 100px)");
+        unitswitchColor.style.left=("50%");
     }
-
 
     let newIngredients = recipes[countrySelectedID][recipeName].ingredients;
     let counter = 0;
     let allUnits = document.querySelectorAll(".ingredient-unit");
+    console.log(allUnits);
+    console.log(filteredRecipe)
     allUnits.forEach(unit => {
-        if(newIngredients[counter].length === 2) {
-            unit.innerHTML = newIngredients[counter][0];
-        } else {
-            unit.innerHTML = newIngredients[counter][unitIndex];
-        }
-        
+        console.log(unit);
+        console.log(filteredRecipe[counter].at(-1));
+        if(filteredRecipe[counter].length === 3) {
+            unit.innerHTML = filteredRecipe[counter][unitIndex];
+        }        
         counter++
     })
 }
