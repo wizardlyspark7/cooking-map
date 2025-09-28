@@ -46,7 +46,7 @@ body {
         --p-text-size: 37px;
 
         body {
-            background-color: purple;
+            /* background-color: purple; */
         }
 
         h1 {
@@ -76,7 +76,7 @@ body {
         --p-text-size: 32px;
 
         body {
-            background-color: red;
+            /* background-color: red; */
         }
 
         h1 {
@@ -105,7 +105,7 @@ body {
         --p-text-size: 23px;
 
         body {
-            background-color: orange;
+            /* background-color: orange; */
         }
         
         h1 {
@@ -134,7 +134,7 @@ body {
         --p-text-size: 19px;
 
         body {
-            background-color: yellow;
+            /* background-color: yellow; */
         }
 
         h1 {
@@ -163,7 +163,7 @@ body {
         --p-text-size: 16px;
 
         body {
-            background-color: green;
+            /* background-color: green; */
         }
 
         h1 {
@@ -577,6 +577,11 @@ h3 {
     font-size: 40px;
 }
 
+.test {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
 #recipe-content {
 
     min-height: 0;
@@ -585,6 +590,8 @@ h3 {
     padding-left: 2%;
     padding-right: 2%;
     background: rgb(252, 252, 235);
+    padding-left: 3%;
+    padding-right: 3%;
 
     h1, h2, h3 {
         text-align: center;
@@ -623,7 +630,6 @@ h3 {
 
 .ingredient-item {
     font-size: var(--p-text-size);
-    margin-left: 5px;
     }
 
 
