@@ -55,6 +55,8 @@ html, body {
     padding-right: 2%;
     background: rgb(252, 252, 235);
     border-radius: 2% 2% 2% 2%;
+    padding-left: 5%;
+    padding-right: 5%;
     h1, h2, h3 {
         text-align: center;
     }
@@ -81,7 +83,7 @@ html, body {
 }
 
 #unitswitch {
-    --switch-width: 250px;
+    padding: 1%;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -89,7 +91,9 @@ html, body {
     border-radius: 10px;
     overflow: hidden;
     outline: 1px solid black;
-    width: var(--switch-width);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: space-between;
 
     .unitswitch {
@@ -141,12 +145,12 @@ html, body {
 }
 
 .recipe-sub-header {
+    text-decoration: underline;
     display: block;
-    margin-top: 10px;
-    margin-bottom: 3px;
-    font-weight: strong;
-    font-size: 16px;
-
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: var(--p-text-size);
+    margin-left: 5px;
 }
 
 li {
