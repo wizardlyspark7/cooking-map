@@ -15,6 +15,8 @@ const imperialButton = document.querySelector("#unitswitch-imperial");
 const metricButton = document.querySelector("#unitswitch-metric");
 const unitswitchColor = document.querySelector("#unitswitch-color");
 const backButton = document.querySelector("#back");
+const recipeNotes = document.querySelector("#recipe-notes");
+const fade = document.querySelector(".fade");
 let currentUnit = "metric";
 metricButton.addEventListener("click", unitSwitch);
 imperialButton.addEventListener("click", unitSwitch);
@@ -30,6 +32,7 @@ if(recipeChosen === undefined) {
 }
 
 // Initial functions
+
 function getCountry() {
     let returnValue = null;
     const countries = Object.keys(recipes);
@@ -216,3 +219,6 @@ function addNote(note, parent) {
     parent.appendChild(newNote);
 }
 
+//Running this last as it depends on future content loads.
+console.log(fade.clientHeight);
+recipeNotes.style.marginBottom = (`${fade.clientHeight}px`);

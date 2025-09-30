@@ -3,20 +3,23 @@
     --recipe-side-margin: 30%;
     --button-standard-size: 65px;
     --p-text-size: 16px;
+    --fade-height: 10%;
+    -webkit-text-size-adjust: none !important; 
+    text-size-adjust: none !important;
     h1 {
-        font-size: 50px;
+        font-size: 5rem;
     }
 
     h2 {
-        font-size: 35px;
+        font-size: 3.5rem;
     }
 
     h3 {
-        font-size: 25px;
+        font-size: 2.5rem;
     }
 
     p {
-        font-size: 16px;
+        font-size: 1.6rem;
     }
 }
 
@@ -26,12 +29,13 @@
 
 body {
     margin: 0;
-    background: pink;
+    background: #0099ff;
 }
 
 html, body {
     margin: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 62.5%;
 }
 
 #main {
@@ -63,7 +67,7 @@ html, body {
 }
 
 #recipe-notes {
-    margin-bottom: 50px;
+
 }
 
 #menu-bar {
@@ -95,6 +99,8 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
+    margin-top: 6%;
+    margin-bottom: 6%;
 
     .unitswitch {
     cursor: pointer;
@@ -154,14 +160,15 @@ html, body {
 }
 
 li {
-    font-size: var(--p-text-size)
+    font-size: var(--p-text-size);
+    margin-bottom: 10px;
 }
 
 .fade {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: var(--fade-height);
     background: rgb(252, 252, 235);
     background: linear-gradient(to bottom,rgba(252, 252, 235, 0) 0%, rgba(252, 252, 235, 1) 75%, rgba(252, 252, 235, 1) 100%);
     pointer-events: none;
@@ -174,23 +181,23 @@ li {
         --p-text-size: 37px;
 
         body {
-            background-color: purple;
+            /* background-color: purple; */
         }
 
         h1 {
-            font-size: 80px;
+            font-size: 8rem;
         }
 
         h2 {
-            font-size: 65px;
+            font-size: 6.5rem;
         }
 
         h3 {
-            font-size: 40px;
+            font-size: 4rem;
         }
 
         p {
-            font-size: 37px;
+            font-size: 3.7rem;
         }
 
     }
@@ -203,23 +210,23 @@ li {
         --p-text-size: 32px;
 
         body {
-            background-color: red;
+            /* background-color: red; */
         }
 
         h1 {
-            font-size: 70px;
+            font-size: 7rem;
         }
 
         h2 {
-            font-size: 50px;
+            font-size: 5rem;
         }
 
         h3 {
-            font-size: 35px;
+            font-size: 3.5rem;
         }
 
         p {
-            font-size: 32px;
+            font-size: 3.2rem; 
         }
     }
 }
@@ -231,23 +238,23 @@ li {
         --p-text-size: 23px;
 
         body {
-            background-color: orange;
+            /* background-color: orange; */
         }
         
         h1 {
-            font-size: 65px;
+            font-size: 6.5rem;
         }
 
         h2 {
-            font-size: 45px;
+            font-size: 4.5rem;
         }
 
         h3 {
-            font-size: 30px;
+            font-size: 3.0rem;
         }
 
         p {
-            font-size: 23px;
+            font-size: 2.3rem;
         }
     }
 }
@@ -259,23 +266,23 @@ li {
         --p-text-size: 19px;
 
         body {
-            background-color: yellow;
+            /* background-color: yellow; */
         }
 
         h1 {
-            font-size: 53px;
+            font-size: 5.3rem;
         }
 
         h2 {
-            font-size: 38px;
+            font-size: 3.8rem;
         }
 
         h3 {
-            font-size: 28px;
+            font-size: 2.8rem;
         }
 
         p {
-            font-size: 19px;
+            font-size: 1.9rem;
         }
     }
 }
@@ -287,23 +294,23 @@ li {
         --p-text-size: 16px;
 
         body {
-            background-color: green;
+            /* background-color: green; */
         }
 
         h1 {
-            font-size: 50px;
+            font-size: 5rem;
         }
 
         h2 {
-            font-size: 35px;
+            font-size: 3.5rem;
         }
 
         h3 {
-            font-size: 25px;
+            font-size: 2.5rem;
         }
 
         p {
-            font-size: 16px;
+            font-size: 1.6rem;
         }
     }
 }
@@ -314,7 +321,7 @@ li {
         --recipe-side-margin: 20%;
 
         body {
-            background-color: cyan;
+            /* background-color: cyan; */
         }
     }
 
@@ -330,7 +337,7 @@ li {
         --recipe-side-margin: 15%;
 
         body {
-            background-color: turquoise;
+            /* background-color: turquoise; */
         }
     }
 

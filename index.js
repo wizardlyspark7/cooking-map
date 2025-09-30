@@ -28,6 +28,8 @@ const resultsCountryHeader = document.querySelector("#results-country-header");
 const imperialButton = document.querySelector("#unitswitch-imperial");
 const metricButton = document.querySelector("#unitswitch-metric");
 const unitswitchColor = document.querySelector("#unitswitch-color");
+const recipeNotes = document.querySelector("#recipe-notes");
+const fade = document.querySelector(".fade");
 let checkBoxes = document.querySelectorAll(".ingredient-item");
 
 let recipeID = undefined;
@@ -547,3 +549,6 @@ function addNote(note, parent) {
     parent.appendChild(newNote);
 }
 
+//Running this last as it depends on future content loads.
+console.log(fade.clientHeight);
+recipeNotes.style.marginBottom = (`${fade.clientHeight}px`);

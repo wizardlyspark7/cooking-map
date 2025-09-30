@@ -12,6 +12,8 @@ TO DO: Add @media rule ("hover") to disable this if the user cannot hover.
     --button-standard-size: 65px;
     --p-text-size: 16px;
     --fade-height: 6%;
+    -webkit-text-size-adjust: none !important; 
+    text-size-adjust: none !important;
     h1 {
         font-size: 50px;
     }

@@ -4,6 +4,8 @@
     --side-margin: 30%;
     --button-standard-size: 65px;
     --p-text-size: 16px;
+    -webkit-text-size-adjust: none !important; 
+    text-size-adjust: none !important;
     h1 {
         font-size: 50px;
     }
