@@ -3,7 +3,7 @@
     /*variable declaration*/
     --side-margin: 30%;
     --button-standard-size: 65px;
-    --p-text-size: 16px;
+    --p-text-size: 1.6rem;
     -webkit-text-size-adjust: none !important; 
     text-size-adjust: none !important;
     h1 {
@@ -33,31 +33,35 @@ body {
     background: #0099ff;
 }
 
+html, body {
+    font-size: 62.5%;
+}
+
 @media screen and (min-width: 720px) and (hover:none) {
     :root {
         --results-side-margin: 2%;
         --recipe-side-margin: 2%;
         --button-standard-size: 130px;
-        --p-text-size: 37px;
+        --p-text-size: 4.5rem;
 
         body {
-            background-color: purple;
+            /* background-color: purple; */
         }
 
         h1 {
-            font-size: 80px;
+            font-size: 8.5rem;
         }
 
         h2 {
-            font-size: 65px;
+            font-size: 7rem;
         }
 
         h3 {
-            font-size: 40px;
+            font-size: 5rem;
         }
 
         p {
-            font-size: 37px;
+            font-size: 4.5rem;
         }
 
     }
@@ -68,26 +72,26 @@ body {
         --results-side-margin: 2%;
         --recipe-side-margin: 2%;
         --button-standard-size: 130px;
-        --p-text-size: 32px;
+        --p-text-size: 4rem;
 
         body {
-            background-color: red;
+            /* background-color: red; */
         }
 
         h1 {
-            font-size: 70px;
+            font-size: 8rem;
         }
 
         h2 {
-            font-size: 50px;
+            font-size: 6rem;
         }
 
         h3 {
-            font-size: 35px;
+            font-size: 4.5rem;
         }
 
         p {
-            font-size: 32px;
+            font-size: 4rem;
         }
     }
 }
@@ -97,26 +101,26 @@ body {
         --results-side-margin: 6%;
         --recipe-side-margin: 12%;
         --button-standard-size: 100px;
-        --p-text-size: 23px;
+        --p-text-size: 2.3rem;
 
         body {
-            background-color: orange;
+            /* background-color: orange; */
         }
         
         h1 {
-            font-size: 65px;
+            font-size: 7rem;
         }
 
         h2 {
-            font-size: 45px;
+            font-size: 4.5rem;
         }
 
         h3 {
-            font-size: 30px;
+            font-size: 3.0rem;
         }
 
         p {
-            font-size: 23px;
+            font-size: 2.3rem;
         }
     }
 }
@@ -126,26 +130,26 @@ body {
         --results-side-margin: 10%;
         --recipe-side-margin: 20%;
         --button-standard-size: 85px;
-        --p-text-size: 19px;
+        --p-text-size: 1.9rem;
 
         body {
-            background-color: yellow;
+            /* background-color: yellow; */
         }
 
         h1 {
-            font-size: 53px;
+            font-size: 6rem;
         }
 
         h2 {
-            font-size: 38px;
+            font-size: 3.5rem;
         }
 
         h3 {
-            font-size: 28px;
+            font-size: 2.5rem;
         }
 
         p {
-            font-size: 19px;
+            font-size: 1.9rem;
         }
     }
 }
@@ -158,23 +162,23 @@ body {
         --p-text-size: 16px;
 
         body {
-            background-color: green;
+            /* background-color: green; */
         }
 
         h1 {
-            font-size: 50px;
+            font-size: 5rem;
         }
 
         h2 {
-            font-size: 35px;
+            font-size: 3rem;
         }
 
         h3 {
-            font-size: 25px;
+            font-size: 2.3rem;
         }
 
         p {
-            font-size: 16px;
+            font-size: 1.6rem;
         }
     }
 }
@@ -272,13 +276,15 @@ a {
 
     position: relative;
     width: 250px;
-    height: calc(250px + var(--recipe-tile-additional-size) + 1px);
+    /* height: calc(250px + var(--recipe-tile-additional-size) + 1px); */
     text-align: center;
     vertical-align: text-bottom;
     font-size: 25px;
     font-weight: bold;
     color: black;
     cursor: pointer;
+    margin-top: 1%;
+    margin-bottom: 1%;
 
     #thumbnail {
     height: 150px;
@@ -293,10 +299,18 @@ a {
 }
 
 .recipe-text-container {
-    display: grid;
+    display: -webkit-box;
+    /* display: grid; */
     width: 250px;
-    height: 50px;
-    place-items: center;
+    /* height: 50px; */
+    /* place-items: center; */
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+    /*Webkit testing...*/
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .fade {
@@ -351,27 +365,27 @@ a {
     :root {
         --side-margin: 2%;
         --button-standard-size: 130px;
-        --p-text-size: 32px;
+        --p-text-size: 4rem;
         --recipe-tile-additional-size: 10px;
 
         body {
-            background-color: red;
+            /* background-color: red; */
         }
 
         h1 {
-            font-size: 70px;
+            font-size: 8rem;
         }
 
         h2 {
-            font-size: 50px;
+            font-size: 6rem;
         }
 
         h3 {
-            font-size: 35px;
+            font-size: 4.5rem;
         }
 
         p {
-            font-size: 32px;
+            font-size: 4rem;
         }
     }
 

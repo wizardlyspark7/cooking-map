@@ -2,7 +2,7 @@
     /*variable declaration*/
     --recipe-side-margin: 30%;
     --button-standard-size: 65px;
-    --p-text-size: 16px;
+    --p-text-size: 1.6rem;
     --fade-height: 10%;
     -webkit-text-size-adjust: none !important; 
     text-size-adjust: none !important;
@@ -145,7 +145,7 @@ html, body {
 
 #recipe-picture {
     display: block;
-    width: 70%;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -172,32 +172,33 @@ li {
     background: rgb(252, 252, 235);
     background: linear-gradient(to bottom,rgba(252, 252, 235, 0) 0%, rgba(252, 252, 235, 1) 75%, rgba(252, 252, 235, 1) 100%);
     pointer-events: none;
+    border-radius: 0 0 20px 20px;
 }
 
 @media screen and (min-width: 720px) and (hover:none) {
     :root {
         --recipe-side-margin: 2%;
         --button-standard-size: 130px;
-        --p-text-size: 37px;
+        --p-text-size: 4.5rem;
 
         body {
             /* background-color: purple; */
         }
 
         h1 {
-            font-size: 8rem;
+            font-size: 8.5rem;
         }
 
         h2 {
-            font-size: 6.5rem;
+            font-size: 7rem;
         }
 
         h3 {
-            font-size: 4rem;
+            font-size: 5rem;
         }
 
         p {
-            font-size: 3.7rem;
+            font-size: 4.5rem;
         }
 
     }
@@ -207,26 +208,26 @@ li {
     :root {
         --recipe-side-margin: 2%;
         --button-standard-size: 130px;
-        --p-text-size: 32px;
+        --p-text-size: 4rem;
 
         body {
             /* background-color: red; */
         }
 
         h1 {
-            font-size: 7rem;
+            font-size: 8rem;
         }
 
         h2 {
-            font-size: 5rem;
+            font-size: 6rem;
         }
 
         h3 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
         }
 
         p {
-            font-size: 3.2rem; 
+            font-size: 4rem; 
         }
     }
 }
@@ -235,14 +236,14 @@ li {
     :root {
         --recipe-side-margin: 12%;
         --button-standard-size: 100px;
-        --p-text-size: 23px;
+        --p-text-size: 2.3rem;
 
         body {
             /* background-color: orange; */
         }
         
         h1 {
-            font-size: 6.5rem;
+            font-size: 7rem;
         }
 
         h2 {
@@ -263,22 +264,22 @@ li {
     :root {
         --recipe-side-margin: 20%;
         --button-standard-size: 85px;
-        --p-text-size: 19px;
+        --p-text-size: 1.9rem;
 
         body {
             /* background-color: yellow; */
         }
 
         h1 {
-            font-size: 5.3rem;
+            font-size: 6rem;
         }
 
         h2 {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
         }
 
         h3 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
         }
 
         p {
@@ -291,7 +292,7 @@ li {
     :root {
         --recipe-side-margin: 30%;
         --button-standard-size: 65px;
-        --p-text-size: 16px;
+        --p-text-size: 1.6rem;
 
         body {
             /* background-color: green; */
@@ -302,16 +303,28 @@ li {
         }
 
         h2 {
-            font-size: 3.5rem;
+            font-size: 3rem;
         }
 
         h3 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
         }
 
         p {
             font-size: 1.6rem;
         }
+    }
+}
+
+#recipe-ingredients {
+    li {
+        
+        list-style-type: '☐  ';
+    }
+
+    li.checked {
+        
+        list-style-type: '☑  ';
     }
 }
 
