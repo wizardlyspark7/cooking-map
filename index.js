@@ -230,6 +230,7 @@ function windowKeyDownFunctions(event) {
 
 function deleteRecipeDelay() { // TODO: Have this function delay then re-enable the clicking of buttons.
     console.log("Deleting recipe");
+    filteredRecipe = [];
     let recipeItems = document.querySelectorAll(".delete-on-page-up");
     setTimeout(function(){ // Wait 1s to execute
         recipeItems.forEach(item => {

@@ -255,12 +255,23 @@ h1 {
 .button {
     width: var(--button-standard-size);
 }
+
+#content {
+    width: 100%;
+}
+
+#bio {
+    min-height: 663px;
+    margin-bottom: 7%;
+}
+
 #authors-recipes-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
     column-gap: 20px;
     row-gap: 20px;
     padding-left: 5%;
+    width: 96%;
     padding-right: 5%;
     justify-content: space-around;
     margin-left: auto;
@@ -333,7 +344,7 @@ a {
         --recipe-tile-additional-size: 15px;
 
         body {
-            background-color: purple;
+            /* background-color: purple; */
         }
 
         h1 {
@@ -405,7 +416,7 @@ a {
         --recipe-tile-additional-size: 5px;
 
         body {
-            background-color: orange;
+            /* background-color: orange; */
         }
         
         h1 {
@@ -441,7 +452,7 @@ a {
         --recipe-tile-additional-size: 3px;
 
         body {
-            background-color: yellow;
+            /* background-color: yellow; */
         }
 
         h1 {
@@ -475,7 +486,7 @@ a {
         --p-text-size: 16px;
 
         body {
-            background-color: green;
+            /* background-color: green; */
         }
 
         h1 {
@@ -507,7 +518,7 @@ a {
         --side-margin: 20%;
 
         body {
-            background-color: cyan;
+            /* background-color: cyan; */
         }
     }
 
@@ -523,7 +534,7 @@ a {
         --side-margin: 10%;
 
         body {
-            background-color: turquoise;
+            /* background-color: turquoise; */
         }
     }
 
